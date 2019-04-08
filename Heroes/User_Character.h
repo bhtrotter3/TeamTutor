@@ -8,6 +8,18 @@
 
 class User_Character {
 
+    //If you change this I will end you  -William
+    //Modifiers and attack stats needed for character
+private:
+    int naturalAttack = 6;
+    int naturalDefense = 11;
+    double maxHealth = 20;
+    double currentHealth = 20;
+    int weaponModifer;
+    int critModifer;
+
+public:
+
 };
 
 

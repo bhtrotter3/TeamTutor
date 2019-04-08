@@ -12,7 +12,7 @@ using namespace std;
 
 class Monsters {
 
-private:
+protected:
     string monsterName;
     double currentHealth;
     double maxHealth;

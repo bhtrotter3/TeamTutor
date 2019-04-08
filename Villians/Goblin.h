@@ -5,10 +5,15 @@
 #ifndef TEAMTUTOR_GOBLIN_H
 #define TEAMTUTOR_GOBLIN_H
 
-//update
-//test
-class Goblin {
+#include "Monsters.h"
 
+using namespace std;
+
+class Goblin: public Monsters {
+
+private:
+public:
+    Goblin();
 };
 
 
