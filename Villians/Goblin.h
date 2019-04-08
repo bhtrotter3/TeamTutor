@@ -6,6 +6,7 @@
 #define TEAMTUTOR_GOBLIN_H
 
 //update
+//test
 class Goblin {
 
 };
