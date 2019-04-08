@@ -15,11 +15,7 @@ private:
 
 public:
     //Since our town is customally designed, we need to statically define it
-    Town(){
-    gridLocation[3][3] = 'm';
-    gridLocation[3][4] = 'h';
-
-};
+    Town();
 
 
 
