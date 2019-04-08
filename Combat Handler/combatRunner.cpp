@@ -35,6 +35,7 @@ void combatRunner::combat(int userFinalAttack, int userFinalDefense, int opponen
         cout << "========================" << '\n' << '\n' << userName + " VERSUS " + opponentName;
         cout << "What would you like to do: ";
 
+        cin.clear();
         cin >> answer;
 
         //Code needed to convert uppperToLowerCase

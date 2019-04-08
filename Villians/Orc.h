@@ -11,7 +11,7 @@ class Orc : public Monsters{
 
 private:
 public:
-
+    Orc();
 };
 
 

@@ -9,8 +9,9 @@
 
 class Bosses : public Monsters{
 
-private:
-
+protected:
+    int critModifier;
+    bool burnDamage;
 public:
     Bosses();
 };
