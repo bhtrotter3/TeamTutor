@@ -5,9 +5,14 @@
 #ifndef TEAMTUTOR_BOSSES_H
 #define TEAMTUTOR_BOSSES_H
 
+#include "Monsters.h"
 
-class Bosses {
+class Bosses : public Monsters{
 
+private:
+
+public:
+    Bosses();
 };
 
 

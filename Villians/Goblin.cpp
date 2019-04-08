@@ -14,4 +14,7 @@ Goblin::Goblin()
     naturalAttack = 7.0;
     naturalDefense = 10.0;
     maxHealth = 10.0;
+    isMagical = false;
+    isMagicResistant = false;
+
 }

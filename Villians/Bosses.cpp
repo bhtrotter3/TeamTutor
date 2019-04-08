@@ -3,3 +3,11 @@
 //
 
 #include "Bosses.h"
+
+using namespace std;
+
+Bosses::Bosses()
+    : Monsters(){
+
+
+}
