@@ -62,3 +62,8 @@ void User_Character::minusHealth(int x) {
         cout << '\n' << '\n' << "Your Health has fallen to ZERO...You are Dead." << '\n';
     }
 }
+
+//Adds x to max health
+void User_Character::addMaxHealth(int x) {
+    maxHealth+=x;
+}

@@ -36,6 +36,7 @@ public:
     void resetCritModifer();
     void addHealth(int x);
     void minusHealth(int x);
+    void addMaxHealth(int x);
 
 
     //Functions below actually do things
