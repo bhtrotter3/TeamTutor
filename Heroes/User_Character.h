@@ -46,6 +46,9 @@ public:
     int getDefense();
     bool getIfMagical();
     std::string getName();
+    double getHealth();
+
+    void setHealthAfterCombat(double &x);
 
     //Functions below actually do things
 

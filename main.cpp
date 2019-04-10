@@ -48,13 +48,20 @@ int main() {
     masterMonsterList.push_back(Audrey_Horrum);
 
 
+    //ALL CODE BELOW IS TESTING, DO NOT REMOVE, PLEASE COMMENT OUT IF NEED
+
+    cout << "User health: " << Bill_Trotter.getHealth() << endl;
+    cout << "Monster Health: " << Gobby.getHealth() << endl;
+
+    cout << '\n' << '\n' << "Combat!" << '\n' << '\n';
     combatHandler.combat(Gobby, Bill_Trotter);
 
-
+    cout << "User health: " << Bill_Trotter.getHealth() << endl;
+    cout << "Monster Health: " << Gobby.getHealth() << endl;
 
 
     //Testing Message
-    std::cout << "TESTING TESTING" << std::endl;
+    std::cout << "TESTING TESTING 1" << std::endl;
 
 
 

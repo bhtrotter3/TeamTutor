@@ -10,7 +10,8 @@ DarkElf::DarkElf()
     :Monsters() {
 
     monsterName = "Dark Elf";
-    maxHealth = 40.0;
+    currentHealth = 40.0;
+    maxHealth = currentHealth;
     naturalAttack = 14.0;
     naturalDefense = 20.0;
     isMagical = true;

@@ -40,3 +40,11 @@ bool Monsters::getIsMonsterMagicResistant() {
 string Monsters::getName() {
     return monsterName;
 }
+
+double Monsters::getHealth() {
+    return currentHealth;
+}
+
+void Monsters::setMonsterHealthAfterCombat(double &x) {
+    currentHealth-=x;
+}

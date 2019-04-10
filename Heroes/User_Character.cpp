@@ -83,3 +83,11 @@ bool User_Character::getIfMagical() {
 string User_Character::getName() {
     return name;
 }
+
+double User_Character::getHealth() {
+    return currentHealth;
+}
+
+void User_Character::setHealthAfterCombat(double &x) {
+    currentHealth-=x;
+}

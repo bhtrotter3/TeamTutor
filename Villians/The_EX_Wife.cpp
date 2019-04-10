@@ -10,7 +10,8 @@ The_EX_Wife::The_EX_Wife()
     :Bosses(){
 
     monsterName = "Hydra";
-    maxHealth = 220.0;
+    currentHealth = 220.0;
+    maxHealth = currentHealth;
     naturalAttack = 56.0;
     naturalDefense = 80.0;
     isMagical = true;

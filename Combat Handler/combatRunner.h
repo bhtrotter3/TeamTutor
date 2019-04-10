@@ -31,12 +31,14 @@ public:
     //The function below only contains functions and not real code, DOES COMBAT MENU
     void combat(Monsters &opponent, User_Character &user);
 
-    //Calculate damages and sets damageToUser and
+    //Calculate damages and sets damageToUser and damageToOpponent
     void calculateDamage(Monsters &opponent, User_Character &User);
+
+    //Minus health from combat
+    void setNewHealthValuesFromCombat(double &userDamage, double &opponentDamage, User_Character &user, Monsters &opponent);
 
     double returnDamageToUser();
     double returnDamageToOpponent();
-
 
 
 };

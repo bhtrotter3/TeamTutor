@@ -23,7 +23,7 @@ void combatRunner::combat(Monsters &opponent, User_Character &user) {
     //This function is to run programs and do nothing else
     //The whole purpose of this being here is that this is the final layer that holds combat in place
 
-    string answer, userName, opponentName;
+    string answer;
 
     //Never ending loop that will check to see if the user wants to flee for to attack
     while (true) {
@@ -32,7 +32,7 @@ void combatRunner::combat(Monsters &opponent, User_Character &user) {
         cout << "=                      =" << "\n";
         cout << "= ATTACK / FLEE / HEAL =" << '\n';
         cout << "=                      =" << '\n';
-        cout << "========================" << '\n' << '\n' << user.getName() + " VERSUS " + opponent.getName();
+        cout << "========================" << '\n' << '\n' << user.getName() + " VERSUS " + opponent.getName() << '\n';
         cout << "What would you like to do: ";
 
         cin.clear();
@@ -47,10 +47,11 @@ void combatRunner::combat(Monsters &opponent, User_Character &user) {
 
         if (converted == "ATTACK" || converted == "A") {
             //First we have to calc damage
-            //calculateDamage(userFinalAttack, userFinalDefense, opponentFinalAttack, opponentFinalDefense, userMW, opponentMagical, opponentMR);
+            calculateDamage(opponent, user);
 
             //Then we have to set damage to monster and user
-
+            cout << '\n' << "Damage done to " << user.getName() << " : " << damageToUser;
+            cout << '\n' << "Damage done to " << opponent.getName() << " : " << damageToOpponent << '\n';
         }
 
         if (converted == "FLEE" || converted =="F"){
@@ -94,6 +95,7 @@ void combatRunner::calculateDamage(Monsters &opponent, User_Character &User){
     this->damageToUser = userDamage;
     this->damageToOpponent = opponentDamage;
 
+    setNewHealthValuesFromCombat(userDamage, opponentDamage, User, opponent);
 }
 
 //
@@ -106,4 +108,9 @@ double combatRunner::returnDamageToUser(){
 //Returns damage that was dealt to the opponent
 double combatRunner::returnDamageToOpponent(){
     return this->damageToOpponent;
+}
+
+void combatRunner::setNewHealthValuesFromCombat(double &userDamage, double &opponentDamage, User_Character &user, Monsters &opponent) {
+    opponent.setMonsterHealthAfterCombat(opponentDamage);
+    user.setHealthAfterCombat(userDamage);
 }

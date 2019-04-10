@@ -29,6 +29,9 @@ public:
     bool getIsMonsterMagical();
     bool getIsMonsterMagicResistant();
     string getName();
+    double getHealth();
+
+    void setMonsterHealthAfterCombat(double &x);
 };
 
 

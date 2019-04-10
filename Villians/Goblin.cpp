@@ -13,7 +13,8 @@ Goblin::Goblin()
     monsterName = "Goblin";
     naturalAttack = 7.0;
     naturalDefense = 10.0;
-    maxHealth = 10.0;
+    currentHealth = 10.0;
+    maxHealth = currentHealth;
     isMagical = false;
     isMagicResistant = false;
 
