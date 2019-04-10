@@ -67,3 +67,19 @@ void User_Character::minusHealth(int x) {
 void User_Character::addMaxHealth(int x) {
     maxHealth+=x;
 }
+
+int User_Character::getAttack() {
+    return currentAttack;
+}
+
+int User_Character::getDefense() {
+    return currentDefense;
+}
+
+bool User_Character::getIfMagical() {
+    return isMagical;
+}
+
+string User_Character::getName() {
+    return name;
+}

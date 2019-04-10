@@ -3,6 +3,7 @@
 
 //Header Files Needed
 #include "Villians/Monsters.h"
+#include "Villians/Bosses.h"
 #include "Villians/Goblin.h"
 #include "Villians/DarkElf.h"
 #include "Villians/Orc.h"
@@ -17,6 +18,8 @@ DarkElf Elfy;
 Orc Orcy;
 The_EX_Wife Audrey_Horrum;
 
+//Combathandler delcaration
+combatRunner combatHandler;
 
 /*Vector of all differentMonster
 1 = GOBLIN
@@ -28,7 +31,7 @@ vector<Monsters> masterMonsterList;
 
 /*Vector full of Bosses
 1 = Ex Wife */
-vector<Bosses> masterBossList;
+//vector<Bosses> masterBossList;
 
 
 //User's Character
@@ -38,10 +41,16 @@ User_Character Bill_Trotter;
 int main() {
 
     //Monsters added to vector
+    //See 2 note sections above for vector mapping
     masterMonsterList.push_back(Gobby);
     masterMonsterList.push_back(Elfy);
     masterMonsterList.push_back(Orcy);
-    masterBossList.push_back(Audrey_Horrum);
+    masterMonsterList.push_back(Audrey_Horrum);
+
+
+    combatHandler.combat(Gobby, Bill_Trotter);
+
+
 
 
     //Testing Message

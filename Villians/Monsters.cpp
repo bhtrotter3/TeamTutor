@@ -16,3 +16,27 @@ Monsters::Monsters(string a, double b){
     maxHealth=b;
 }
 
+//Returns attack stat to the public
+double Monsters::getAttack() {
+    return naturalAttack;
+}
+
+//Returns defense stat to the public
+double Monsters::getDefense() {
+    return naturalDefense;
+}
+
+//Returns isMagical true/false to the public
+bool Monsters::getIsMonsterMagical() {
+    return isMagical;
+}
+
+//Retruns isMagicResistant true/false to the public
+bool Monsters::getIsMonsterMagicResistant() {
+    return isMagicResistant;
+}
+
+//Returns name to the public
+string Monsters::getName() {
+    return monsterName;
+}

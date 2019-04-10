@@ -9,7 +9,7 @@ using namespace std;
 The_EX_Wife::The_EX_Wife()
     :Bosses(){
 
-    monsterName = "Hannah Montana";
+    monsterName = "Hydra";
     maxHealth = 220.0;
     naturalAttack = 56.0;
     naturalDefense = 80.0;

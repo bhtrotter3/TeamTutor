@@ -5,12 +5,13 @@
 #ifndef TEAMTUTOR_USER_CHARACTER_H
 #define TEAMTUTOR_USER_CHARACTER_H
 
+#include "string"
 
 class User_Character {
 
     //If you change this I will end you  -William
     //Modifiers and attack stats needed for character
-private:
+protected:
     int naturalAttack = 6;
     int naturalDefense = 11;
 
@@ -22,6 +23,10 @@ private:
 
     int weaponModifer = 0;
     int critModifer = 0;
+
+    bool isMagical = false;
+
+    std::string name = "Bill Trotter";
 
 public:
 
@@ -37,7 +42,10 @@ public:
     void addHealth(int x);
     void minusHealth(int x);
     void addMaxHealth(int x);
-
+    int getAttack();
+    int getDefense();
+    bool getIfMagical();
+    std::string getName();
 
     //Functions below actually do things
 

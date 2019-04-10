@@ -24,6 +24,11 @@ protected:
 public:
     Monsters();
     Monsters(string a, double b);
+    double getDefense();
+    double getAttack();
+    bool getIsMonsterMagical();
+    bool getIsMonsterMagicResistant();
+    string getName();
 };
 
 

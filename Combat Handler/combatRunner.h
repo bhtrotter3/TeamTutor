@@ -5,6 +5,15 @@
 #ifndef TEAMTUTOR_COMBATRUNNER_H
 #define TEAMTUTOR_COMBATRUNNER_H
 
+#include "../Villians/Bosses.h"
+#include "../Villians/Monsters.h"
+#include "../Villians/Goblin.h"
+#include "../Villians/DarkElf.h"
+#include "../Villians/Orc.h"
+#include "../Villians/The_EX_Wife.h"
+#include "../Heroes/User_Character.h"
+
+
 using namespace std;
 
 //This is a class that needs to be a singleton
@@ -19,10 +28,16 @@ private:
 
 public:
     combatRunner();
-    void combat(int userFinalAttack, int userFinalDefense, int opponentFinalAttack, int opponentFinalDefense, bool userMW, bool opponentMagical, bool opponentMR);
-    void calculateDamage(int userFinalAttack, int userFinalDefense, int opponentFinalAttack, int opponentFinalDefense, bool userMW, bool opponentMagical, bool opponentMR);
+    //The function below only contains functions and not real code, DOES COMBAT MENU
+    void combat(Monsters &opponent, User_Character &user);
+
+    //Calculate damages and sets damageToUser and
+    void calculateDamage(Monsters &opponent, User_Character &User);
+
     double returnDamageToUser();
     double returnDamageToOpponent();
+
+
 
 };
 

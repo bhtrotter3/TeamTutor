@@ -18,7 +18,7 @@ combatRunner::combatRunner() {
 
 //
 //This function sole mission is to run functions, everthing else is defined else where
-void combatRunner::combat(int userFinalAttack, int userFinalDefense, int opponentFinalAttack, int opponentFinalDefense, bool userMW, bool opponentMagical, bool opponentMR) {
+void combatRunner::combat(Monsters &opponent, User_Character &user) {
 
     //This function is to run programs and do nothing else
     //The whole purpose of this being here is that this is the final layer that holds combat in place
@@ -32,7 +32,7 @@ void combatRunner::combat(int userFinalAttack, int userFinalDefense, int opponen
         cout << "=                      =" << "\n";
         cout << "= ATTACK / FLEE / HEAL =" << '\n';
         cout << "=                      =" << '\n';
-        cout << "========================" << '\n' << '\n' << userName + " VERSUS " + opponentName;
+        cout << "========================" << '\n' << '\n' << user.getName() + " VERSUS " + opponent.getName();
         cout << "What would you like to do: ";
 
         cin.clear();
@@ -66,32 +66,32 @@ void combatRunner::combat(int userFinalAttack, int userFinalDefense, int opponen
 
 //
 //Function is defined as calculating damage based on information passed
-void combatRunner::calculateDamage(int userFinalAttack, int userFinalDefense, int opponentFinalAttack, int opponentFinalDefense, bool userMW, bool opponentMagical, bool opponentMR){
+void combatRunner::calculateDamage(Monsters &opponent, User_Character &User){
 
     //Calculating the damage the user will do to the opponent
     //opponent Damage = damage done to the opponent
-    double opponentDamage = (userFinalAttack*4 - opponentFinalDefense*2) + 1;
+    double opponentDamage = (User.getAttack()*4 - opponent.getDefense()*2) + 1;
     if (opponentDamage < 3)
         opponentDamage = 2;
 
-    double userDamage = (opponentFinalAttack*4 - userFinalDefense*2) + 1;
+    double userDamage = (opponent.getAttack()*4 - User.getDefense()*2) + 1;
     if (userDamage < 4)
         userDamage = 3;
 
     //Statements below check to see if magical weapons are used
     //Magical weapons add a 10% increase to damage
     //Statements only happen if someone has a magical weapon and the other doesnt.
-    if (userMW == true && opponentMR == false)
+    if (User.getIfMagical() == true && opponent.getIsMonsterMagicResistant() == false)
     {
         opponentDamage += opponentDamage*0.1;
     }
 
-    if (opponentMagical == true && userMW == false)
+    if (opponent.getIsMonsterMagical() == true && User.getIfMagical() == false)
     {
-        userDamage+=0.1;
+        userDamage+=userDamage*0.1;
     }
 
-    this->damageToUser = damageToUser;
+    this->damageToUser = userDamage;
     this->damageToOpponent = opponentDamage;
 
 }
