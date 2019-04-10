@@ -41,7 +41,7 @@ int main() {
     masterMonsterList.push_back(Gobby);
     masterMonsterList.push_back(Elfy);
     masterMonsterList.push_back(Orcy);
-    //masterBossList.push_back(Audrey_Horrum);
+    masterBossList.push_back(Audrey_Horrum);
 
 
     //Testing Message

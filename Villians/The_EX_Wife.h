@@ -7,7 +7,7 @@
 
 #include "Bosses.h"
 
-class The_EX_Wife : Bosses{
+class The_EX_Wife : public Bosses{
 
 private:
 public:
