@@ -9,12 +9,12 @@ using namespace std;
 Maps::Maps()
         : Control(){srand(time(NULL));} //seed random encounter roll
 
-void Maps::randomEncounter(int rate) { //higher parameter means lower encounter rate. 1 = 100%, 2 = 50%, 10 = 10%, 100 = 1%
+void Maps::randomEncounter(int rate) {
     if (rate != 0) { //No dividing by zero please.
-        int fightTime = rand() % rate;
-        if (fightTime == 0) {
-            cout << "put fight function here\n";
-        }
+        int fightTime = (rand() % rate); //rate 1 = 100% chance rate 2 = 50% rate x = 1/x chance
+        if (fightTime == 0) {                      // call multiple times for higher encounter rates 50%*2 = 75% chance
+            cout << "put fight function here\n";    //so calling rate 2 twice = 75% encounter rate
+        }                                           //(with chance of back to back fights)
     }
 }
 
@@ -108,7 +108,9 @@ void Maps::goblinCave() { //map transtion
             // }
         else {
             moveTile();
-            randomEncounter(3);
+            randomEncounter(2);
+            randomEncounter(5); //overall 60% chance of encounter (complement of both failing, (1/2)(4/5)
+                                // 10% chance of a double encounter, 40% chance of no encounter on move.
 
         }
     }
