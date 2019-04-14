@@ -23,10 +23,18 @@ void Maps::worldMap() {
     //buildMap(); //needed for proper starting location on transition
     map[3][3] = 'T'; //town
     if (questOne){
-        map[7][7] = 'G';
+        map[7][3] = 'G';
     }
     printMap(); //show player the starting map
-    std::cout<< "You see a town just over the next hill.\n";
+    if (isHero){
+        cout << "Easy peasy lemon squeezy. Now to bring the Chieftain's head back to town.\n";
+    }
+    else if (questOne) {
+        cout << "Kill some goblins to win the peoples trust. Kinda cliche, but at least is isn't rats.\n";
+    }
+    else{
+        std::cout << "You see a town just over the next hill.\n";
+    }
     while (true) { //movement loops until you interact with something to update what's going on
 
         if (playerx == 3 && playery == 3 && interact) {
@@ -35,7 +43,7 @@ void Maps::worldMap() {
             playery = 9;
             Maps::townA(); //map switch
         }
-        if (playerx == 7 && playery == 7 && interact) {
+        if (playerx == 7 && playery == 3 && interact) {
             interact = false;
             playerx = 19; //town starting location from world map
             playery = 1;
@@ -56,6 +64,7 @@ void Maps::townA() { //map transtion
     }
     map[15][5] = 'S'; //Shop
     map[7][9] = 'E'; //Entrance
+    buildMap(); //get player position right after adding walls
     printMap(); //show player the new map
     std::cout << "Finally. Back among civilization.\n";
     while (true) {
@@ -113,12 +122,12 @@ void Maps::goblinCave() { //map transition
 
     printMap(); //show player the new map
     std::cout << "God it smells in here. Why don't I just tell the Blacksmith I killed them? How would he know? Oh.\n"
-                 "Crap. He's going to want proof. Ew.\n"; //have killed goblins add goblin ears to inventory
+                 "Crap. He's going to want proof. Ew.\n";
     while (true) {
         if (playerx == 19 && playery == 1 && interact) {
             interact = false;
             playerx = 7; //worldmap starting location from cave
-            playery = 7;
+            playery = 3;
             Maps::worldMap();
         }
         else if (playerx == 1 && playery ==1 && interact) {//treasure
@@ -135,15 +144,15 @@ void Maps::goblinCave() { //map transition
         }
         else if (playerx == 19 && playery ==7 && interact){
             map[19][7] = ' ';
+            cout << "Goblin Chieftain: \"You may have butchered my boys, but I'm slightly bigger! Have at you!\" \n";
             //Goblin Boss fight
             printMap();
+            cout << "All I wanted was some lunch. Now I'm cutting the head off of some ugly monster that smells\n"
+                    << "like a sewer. I should've stayed in school, like mama wanted.\n";
             isHero = true;
         }
             moveTile();
-            //if (goblinEars < 10){ //kill 10 goblins to stop random encounters, also kill goblin boss to finish quest
             randomEncounter(2);
-            randomEncounter(5); //overall 60% chance of encounter (complement of both failing, (1/2)(4/5)
-            // 10% chance of a double encounter, 40% chance of no encounter on move.
 
     }
 }
