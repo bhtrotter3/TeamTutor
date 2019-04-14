@@ -50,12 +50,10 @@ void Maps::worldMap() {
 
 void Maps::townA() { //map transtion
     initializeMap();
-    //buildMap(); //update map tiles
     map[19][9] = 'B'; //Blacksmith
     for (int x = 0; x < 21; x ++){
         map[x][8] = '=';
     }
-    //map[19][8] = ' '; //railroading the player into an NPC
     map[15][5] = 'S'; //Shop
     map[7][9] = 'E'; //Entrance
     printMap(); //show player the new map
@@ -69,9 +67,17 @@ void Maps::townA() { //map transtion
         }
         else if (playerx == 19 && playery ==9 && interact){
             interact = false;
-            cout<< "Blacksmith: \"You there! You look like a nice young main character. There be goblins in a cave\n"
-                   "east of here. Take care of them and we'll let you in\"\n";
-            questOne = true;
+            if (isHero){
+                map[19][8] = ' ';
+                printMap();
+                cout << "I knew I could count on you. Maybe because the rest of us can't move. Get in there.\n";
+            }
+            else{
+                cout
+                        << "Blacksmith: \"You there! You look like a nice young main character. There be goblins in a cave\n"
+                           "east of here. Take care of them and we'll let you in\"\n";
+                questOne = true;
+            }
 
         }
         else {
@@ -80,38 +86,64 @@ void Maps::townA() { //map transtion
     }
 }
 
-void Maps::goblinCave() { //map transtion
+void Maps::goblinCave() { //map transition
     initializeMap();
+
+    for (int x=0; x < 21; x++){
+        map[x][2] = '=';
+        map[x][6] = '=';
+        map[x][8]='=';
+    }
+    map[5][2] = ' ';
+    map[5][6] = ' ';
+    map[5][8] = ' ';
+    for (int y=3; y < 11; y++){
+        map [4][y] = '|';
+        map[6][y] = '|';
+    }
+    map [4][7] = ' ';
+    map [6][7] = ' ';
+
+    map[1][1] = 'O'; //treasure
+    map [1][7] = 'O'; // treasure
+    map[5][9] = 'O'; //treasure
+    map[19][7] = 'B'; //Goblin Boss
+    map[19][1] = 'E'; //Entrance
     buildMap(); //update map tiles
-    //map[19][9] = 'B'; //Blacksmith
-    //for (int x = 0; x < 21; x ++){
-    //    map[x][8] = '=';
-    //}
-    //map[19][8] = ' '; //railroading the player into an NPC
-    //map[15][5] = 'S'; //Shop
-    //map[7][9] = 'E'; //Entrance
+
     printMap(); //show player the new map
     std::cout << "God it smells in here. Why don't I just tell the Blacksmith I killed them? How would he know? Oh.\n"
-                 "Crap. He's going to want proof. Ew.\n";
+                 "Crap. He's going to want proof. Ew.\n"; //have killed goblins add goblin ears to inventory
     while (true) {
         if (playerx == 19 && playery == 1 && interact) {
             interact = false;
-            playerx = 7; //worldmap starting location
+            playerx = 7; //worldmap starting location from cave
             playery = 7;
             Maps::worldMap();
         }
-            //else if (playerx == 19 && playery ==9 && interact){
-            //cout<< "Blacksmith: \"You there! You look like a nice young main character. There be goblins in a cave\n"
-            //  "east of here. Take care of them and we'll let you in";
-            //questOne = true;
-
-            // }
-        else {
+        else if (playerx == 1 && playery ==1 && interact) {//treasure
+            map[1][1] = ' ';
+            printMap();
+        }
+        else if (playerx == 1 && playery ==7 && interact) {//treasure
+            map[1][7] = ' ';
+            printMap();
+        }
+        else if (playerx == 5 && playery ==9 && interact) {//treasure
+            map[5][9] = ' ';
+            printMap();
+        }
+        else if (playerx == 19 && playery ==7 && interact){
+            map[19][7] = ' ';
+            //Goblin Boss fight
+            printMap();
+            isHero = true;
+        }
             moveTile();
+            //if (goblinEars < 10){ //kill 10 goblins to stop random encounters, also kill goblin boss to finish quest
             randomEncounter(2);
             randomEncounter(5); //overall 60% chance of encounter (complement of both failing, (1/2)(4/5)
-                                // 10% chance of a double encounter, 40% chance of no encounter on move.
+            // 10% chance of a double encounter, 40% chance of no encounter on move.
 
-        }
     }
 }

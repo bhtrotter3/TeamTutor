@@ -14,6 +14,7 @@ class Maps: public Control { //inherits the basic movement functions, but lets m
                                 //more efficient
 protected:
     bool questOne = false;
+    bool isHero= false;
 
 
 public:
