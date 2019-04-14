@@ -10,7 +10,9 @@
 #include "Villians/The_EX_Wife.h"
 #include "Combat Handler/combatRunner.h"
 #include "Heroes/User_Character.h"
+#include "DirectionHandler/Maps.h"
 #include <vector>
+// I'd like to go on record and say making me the main character was not my idea
 
 //Monsters Intialized
 Goblin Gobby;
@@ -50,18 +52,20 @@ int main() {
 
     //ALL CODE BELOW IS TESTING, DO NOT REMOVE, PLEASE COMMENT OUT IF NEED
 
-    cout << "User health: " << Bill_Trotter.getHealth() << endl;
-    cout << "Monster Health: " << Gobby.getHealth() << endl;
+    //cout << "User health: " << Bill_Trotter.getHealth() << endl;
+    //cout << "Monster Health: " << Gobby.getHealth() << endl;
 
-    cout << '\n' << '\n' << "Combat!" << '\n' << '\n';
-    combatHandler.combat(Gobby, Bill_Trotter);
+    //cout << '\n' << '\n' << "Combat!" << '\n' << '\n';
+    //combatHandler.combat(Gobby, Bill_Trotter);
 
-    cout << "User health: " << Bill_Trotter.getHealth() << endl;
-    cout << "Monster Health: " << Gobby.getHealth() << endl;
+    //cout << "User health: " << Bill_Trotter.getHealth() << endl;
+    //cout << "Monster Health: " << Gobby.getHealth() << endl;
 
 
-    //Testing Message
-    std::cout << "TESTING TESTING 1" << std::endl;
+    //Starts up user control and map display
+    Maps maps;
+    maps.initializeMap();
+    maps.worldMap();
 
 
 
