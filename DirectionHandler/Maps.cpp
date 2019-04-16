@@ -9,13 +9,19 @@ using namespace std;
 Maps::Maps()
         : Control(){srand(time(NULL));} //seed random encounter roll
 
-void Maps::randomEncounter(int rate) {
-    if (rate != 0) { //No dividing by zero please.
-        int fightTime = (rand() % rate); //rate 1 = 100% chance rate 2 = 50% rate x = 1/x chance
-        if (fightTime == 0) {                      // call multiple times for higher encounter rates 50%*2 = 75% chance
-            cout << "put fight function here\n";    //so calling rate 2 twice = 75% encounter rate
-        }                                           //(with chance of back to back fights)
+bool Maps::randomEncounter(int rate) {
+    if (rand() % 100 < rate){
+        fightTime = true;
     }
+    else {
+        fightTime = false;
+    }
+    return fightTime;
+    //rand() rolls a number between 32768, then modulos it by 100, leaving a number between 0 and 99
+    // if that number is lower than rate, fightTime activates
+    //this results in -almost- a rate% chance of encounter.
+    //Since 32768 isn't a factor of 100, there 68 numbers that only modulo between 0 and 67
+    // but it's error rate is 0.3% according to some hasty math, so a 65 rate would be a ~65.2% encounter
 }
 
 void Maps::worldMap() {
@@ -97,6 +103,7 @@ void Maps::townA() { //map transtion
 
 void Maps::goblinCave() { //map transition
     initializeMap();
+    bool goblinFight= false;
 
     for (int x=0; x < 21; x++){
         map[x][2] = '=';
@@ -152,7 +159,10 @@ void Maps::goblinCave() { //map transition
             isHero = true;
         }
             moveTile();
-            randomEncounter(2);
+            goblinFight = randomEncounter(65);
+            if (goblinFight){
+                cout << "Goblin Fight Function Goes Here\n";
+            }
 
     }
 }

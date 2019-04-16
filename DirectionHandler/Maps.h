@@ -13,6 +13,7 @@ class Maps: public Control { //inherits the basic movement functions, but lets m
                                 //could maybe be one class, or possibly pass the variable around, but this seemed
                                 //more efficient
 protected:
+    bool fightTime = false;
     bool questOne = false;
     bool isHero= false;
 
@@ -22,7 +23,7 @@ public:
     void worldMap();
     void townA();
     void goblinCave();
-    void randomEncounter(int rate);
+    bool randomEncounter(int rate);
 
 };
 
