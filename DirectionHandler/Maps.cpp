@@ -161,15 +161,15 @@ void Maps::goblinCave() { //map transition
             moveTile();
             goblinFight = randomEncounter(20);
             if (goblinFight){
-                cout << "Goblin Fight Function Goes Here\n";
+                cout << '\n';
                 Goblin Gobby;
 
-                cout << "User health: " << Bill.getHealth() << endl;
+                cout << "User health: " << combatRunner1->findUserCurrentHealth() << endl;
                 cout << "Monster Health: " << Gobby.getHealth() << endl;
 
                 cout << '\n' << '\n' << "Combat!" << '\n' << '\n';
                 combatRunner1=&combatRunner1->getInstance();
-                combatRunner1->combat(Gobby, Bill);
+                combatRunner1->combat(Gobby);
                 printMap();
 
 

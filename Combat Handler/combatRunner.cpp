@@ -24,7 +24,7 @@ combatRunner& combatRunner::getInstance() {
 
 //
 //This function sole mission is to run functions, everthing else is defined else where
-void combatRunner::combat(Monsters &opponent, User_Character &user) {
+void combatRunner::combat(Monsters &opponent) {
 
     //This function is to run programs and do nothing else
     //The whole purpose of this being here is that this is the final layer that holds combat in place
@@ -53,13 +53,13 @@ void combatRunner::combat(Monsters &opponent, User_Character &user) {
 
         if (converted == "ATTACK" || converted == "A") {
             //First we have to calc damage
-            calculateDamage(opponent, user);
+            calculateDamage(opponent);
 
             //Then we have to set damage to monster and user
-            cout << '\n' << "Damage done to " << user.getName() << " : " << damageToUser;
-            cout << '\n' << "Damage done to " << opponent.getName() << " : " << damageToOpponent;
-            cout << '\n' << "Your Current Health is : " << user.getHealth() << " out of " << user.getMaxHealth();
-            cout << '\n' << "Monster's current health is :" << opponent.getHealth() << " out of " << opponent.getMaxHealth() << '\n';
+            cout << '\n' << "Damage done to " << user.getName() << ": " << damageToUser;
+            cout << '\n' << "Damage done to " << opponent.getName() << ": " << damageToOpponent;
+            cout << '\n' << "Your Current Health is: " << user.getHealth() << " out of " << user.getMaxHealth();
+            cout << '\n' << "Monster's current health is: " << opponent.getHealth() << " out of " << opponent.getMaxHealth() << '\n';
         }
 
         if (converted == "FLEE" || converted =="F"){
@@ -68,8 +68,8 @@ void combatRunner::combat(Monsters &opponent, User_Character &user) {
         }
 
         if (converted == "HEAL" || converted =="H"){
-            cout << '\n' << '\n' << "You have restored half of your hitpoints." << '\n';
             user.healCharacter();
+            cout << '\n' << '\n' << "You have restored half of your hitpoints. \n You are now at " << user.getHealth() << " health out of " << user.getMaxHealth() << '\n';
         }
 
         if (user.getHealth() <=0){
@@ -90,27 +90,27 @@ void combatRunner::combat(Monsters &opponent, User_Character &user) {
 
 //
 //Function is defined as calculating damage based on information passed
-void combatRunner::calculateDamage(Monsters &opponent, User_Character &User){
+void combatRunner::calculateDamage(Monsters &opponent){
 
     //Calculating the damage the user will do to the opponent
     //opponent Damage = damage done to the opponent
-    double opponentDamage = (User.getAttack()*4 - opponent.getDefense()*2) + 1;
+    double opponentDamage = (user.getAttack()*4 - opponent.getDefense()*2) + 1;
     if (opponentDamage < 3)
         opponentDamage = 2;
 
-    double userDamage = (opponent.getAttack()*4 - User.getDefense()*2) + 1;
+    double userDamage = (opponent.getAttack()*4 - user.getDefense()*2) + 1;
     if (userDamage < 4)
         userDamage = 3;
 
     //Statements below check to see if magical weapons are used
     //Magical weapons add a 10% increase to damage
     //Statements only happen if someone has a magical weapon and the other doesnt.
-    if (User.getIfMagical() == true && opponent.getIsMonsterMagicResistant() == false)
+    if (user.getIfMagical() == true && opponent.getIsMonsterMagicResistant() == false)
     {
         opponentDamage += opponentDamage*0.1;
     }
 
-    if (opponent.getIsMonsterMagical() == true && User.getIfMagical() == false)
+    if (opponent.getIsMonsterMagical() == true && user.getIfMagical() == false)
     {
         userDamage+=userDamage*0.1;
     }
@@ -128,7 +128,7 @@ void combatRunner::calculateDamage(Monsters &opponent, User_Character &User){
 
     }
 
-    setNewHealthValuesFromCombat(userDamage, opponentDamage, User, opponent);
+    setNewHealthValuesFromCombat(userDamage, opponentDamage, opponent);
 }
 
 //
@@ -143,7 +143,15 @@ double combatRunner::returnDamageToOpponent(){
     return this->damageToOpponent;
 }
 
-void combatRunner::setNewHealthValuesFromCombat(double &userDamage, double &opponentDamage, User_Character &user, Monsters &opponent) {
+void combatRunner::setNewHealthValuesFromCombat(double &userDamage, double &opponentDamage, Monsters &opponent) {
     opponent.setMonsterHealthAfterCombat(opponentDamage);
     user.setHealthAfterCombat(userDamage);
+}
+
+double combatRunner::findUserCurrentHealth() {
+    return user.getHealth();
+}
+
+double combatRunner::findUserMaxHealth() {
+    return user.getMaxHealth();
 }

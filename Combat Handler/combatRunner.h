@@ -25,25 +25,26 @@ private:
     double damageToUser;
     double damageToOpponent;
     combatRunner();
+    User_Character user;
 
 public:
 
     combatRunner& getInstance();
 
     //The function below only contains functions and not real code, DOES COMBAT MENU
-    void combat(Monsters &opponent, User_Character &user);
+    void combat(Monsters &opponent);
 
     //Calculate damages and sets damageToUser and damageToOpponent
-    void calculateDamage(Monsters &opponent, User_Character &User);
+    void calculateDamage(Monsters &opponent);
 
     //Minus health from combat
-    void setNewHealthValuesFromCombat(double &userDamage, double &opponentDamage, User_Character &user, Monsters &opponent);
+    void setNewHealthValuesFromCombat(double &userDamage, double &opponentDamage, Monsters &opponent);
 
 
     double returnDamageToUser();
     double returnDamageToOpponent();
-
-
+    double findUserCurrentHealth();
+    double findUserMaxHealth();
 };
 
 

@@ -8,7 +8,6 @@
 #include <time.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include "../Heroes/User_Character.h"
 #include "../Villians/Monsters.h"
 #include "../Villians/Goblin.h"
 #include "../Combat Handler/combatRunner.h"
@@ -20,7 +19,6 @@ protected:
     bool fightTime = false;
     bool questOne = false;
     bool isHero= false;
-    User_Character Bill;
     combatRunner* combatRunner1;
 public:
     Maps ();
