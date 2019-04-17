@@ -17,5 +17,5 @@ Goblin::Goblin()
     maxHealth = currentHealth;
     isMagical = false;
     isMagicResistant = false;
-
+    isBoss = false;
 }

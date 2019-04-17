@@ -45,6 +45,18 @@ double Monsters::getHealth() {
     return currentHealth;
 }
 
+double Monsters::getMaxHealth() {
+    return maxHealth;
+}
+
+bool Monsters::getIsBoss() {
+    return isBoss;
+}
+
+int Monsters::getCritModifier() {
+    return critModifer;
+}
+
 void Monsters::setMonsterHealthAfterCombat(double &x) {
     currentHealth-=x;
 }

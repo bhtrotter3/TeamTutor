@@ -8,6 +8,10 @@
 #include <time.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include "../Heroes/User_Character.h"
+#include "../Villians/Monsters.h"
+#include "../Villians/Goblin.h"
+#include "../Combat Handler/combatRunner.h"
 
 class Maps: public Control { //inherits the basic movement functions, but lets me keep map data separate
                                 //could maybe be one class, or possibly pass the variable around, but this seemed
@@ -16,8 +20,8 @@ protected:
     bool fightTime = false;
     bool questOne = false;
     bool isHero= false;
-
-
+    User_Character Bill;
+    combatRunner* combatRunner1;
 public:
     Maps ();
     void worldMap();

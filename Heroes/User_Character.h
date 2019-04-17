@@ -18,8 +18,8 @@ protected:
     int currentAttack = 6;
     int currentDefense = 11;
 
-    double maxHealth = 20;
-    double currentHealth = 20;
+    double maxHealth = 100;
+    double currentHealth = 100;
 
     int weaponModifer = 0;
     int critModifer = 0;
@@ -47,12 +47,12 @@ public:
     bool getIfMagical();
     std::string getName();
     double getHealth();
+    double getMaxHealth();
 
     void setHealthAfterCombat(double &x);
 
-    //Functions below actually do things
-
-
+    //Heals character for half its health
+    void healCharacter();
 
 };
 

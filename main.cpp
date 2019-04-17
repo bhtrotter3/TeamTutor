@@ -3,7 +3,6 @@
 
 //Header Files Needed
 #include "Villians/Monsters.h"
-#include "Villians/Bosses.h"
 #include "Villians/Goblin.h"
 #include "Villians/DarkElf.h"
 #include "Villians/Orc.h"
@@ -18,10 +17,8 @@
 Goblin Gobby;
 DarkElf Elfy;
 Orc Orcy;
-The_EX_Wife Audrey_Horrum;
+The_EX_Wife Goblin_King;
 
-//Combathandler delcaration
-combatRunner combatHandler;
 
 /*Vector of all differentMonster
 1 = GOBLIN
@@ -47,7 +44,7 @@ int main() {
     masterMonsterList.push_back(Gobby);
     masterMonsterList.push_back(Elfy);
     masterMonsterList.push_back(Orcy);
-    masterMonsterList.push_back(Audrey_Horrum);
+    masterMonsterList.push_back(Goblin_King);
 
 
     //ALL CODE BELOW IS TESTING, DO NOT REMOVE, PLEASE COMMENT OUT IF NEED

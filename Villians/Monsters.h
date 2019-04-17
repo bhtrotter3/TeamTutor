@@ -20,6 +20,8 @@ protected:
     bool isMagicResistant;
     double naturalAttack;
     double naturalDefense;
+    bool isBoss;
+    int critModifer;
 
 public:
     Monsters();
@@ -30,6 +32,9 @@ public:
     bool getIsMonsterMagicResistant();
     string getName();
     double getHealth();
+    double getMaxHealth();
+    bool getIsBoss();
+    int getCritModifier();
 
     void setMonsterHealthAfterCombat(double &x);
 };

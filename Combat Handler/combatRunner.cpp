@@ -3,6 +3,7 @@
 //
 
 #include "combatRunner.h"
+//#include "../Heroes/User_Character.h"
 #include <iostream>
 #include <string>
 
@@ -14,6 +15,11 @@ combatRunner::combatRunner() {
 
     damageToOpponent = 0.0;
     damageToUser = 0.0;
+}
+
+combatRunner& combatRunner::getInstance() {
+    static combatRunner combatInstance;
+    return combatInstance;
 }
 
 //
@@ -32,7 +38,7 @@ void combatRunner::combat(Monsters &opponent, User_Character &user) {
         cout << "=                      =" << "\n";
         cout << "= ATTACK / FLEE / HEAL =" << '\n';
         cout << "=                      =" << '\n';
-        cout << "========================" << '\n' << '\n' << user.getName() + " VERSUS " + opponent.getName() << '\n';
+        cout << "========================" << '\n' << '\n' << user.getName() + " VERSUS " + opponent.getName() << '\n' << endl;
         cout << "What would you like to do: ";
 
         cin.clear();
@@ -51,13 +57,30 @@ void combatRunner::combat(Monsters &opponent, User_Character &user) {
 
             //Then we have to set damage to monster and user
             cout << '\n' << "Damage done to " << user.getName() << " : " << damageToUser;
-            cout << '\n' << "Damage done to " << opponent.getName() << " : " << damageToOpponent << '\n';
+            cout << '\n' << "Damage done to " << opponent.getName() << " : " << damageToOpponent;
+            cout << '\n' << "Your Current Health is : " << user.getHealth() << " out of " << user.getMaxHealth();
+            cout << '\n' << "Monster's current health is :" << opponent.getHealth() << " out of " << opponent.getMaxHealth() << '\n';
         }
 
         if (converted == "FLEE" || converted =="F"){
             cout << '\n' << '\n' << "You have fled." << '\n';
             break;
         }
+
+        if (converted == "HEAL" || converted =="H"){
+            cout << '\n' << '\n' << "You have restored half of your hitpoints." << '\n';
+            user.healCharacter();
+        }
+
+        if (user.getHealth() <=0){
+            cout << '\n' << "You have died" << '\n';
+            exit(0);
+        }
+        if (opponent.getHealth() <= 0){
+            cout << '\n' << "You have slain the monster!" << '\n';
+            break;
+        }
+
 
     }
 }
@@ -94,6 +117,16 @@ void combatRunner::calculateDamage(Monsters &opponent, User_Character &User){
 
     this->damageToUser = userDamage;
     this->damageToOpponent = opponentDamage;
+
+    //Checks to see in this is a boss that the user is fighting
+    if (opponent.getIsBoss()) {
+        if (rand()%100 < opponent.getCritModifier())
+        {
+            this->damageToOpponent = damageToOpponent + 0.2*damageToOpponent;
+            cout << '\n' << '\n' << "The opponent has landed a critical hit!" << '\n' << '\n';
+        }
+
+    }
 
     setNewHealthValuesFromCombat(userDamage, opponentDamage, User, opponent);
 }

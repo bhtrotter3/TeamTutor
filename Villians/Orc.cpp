@@ -10,11 +10,12 @@ Orc::Orc()
     :Monsters(){
 
     monsterName = "Orc";
-    currentHealth = 120.0;
+    currentHealth = 40.0;
     maxHealth = currentHealth;
-    naturalAttack = 28.0;
-    naturalDefense = 20.0;
+    naturalAttack = 12.0;
+    naturalDefense = 15.0;
     isMagical = false;
     isMagicResistant = false;
+    isBoss = false;
 
 }

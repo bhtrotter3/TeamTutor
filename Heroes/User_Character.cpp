@@ -88,6 +88,17 @@ double User_Character::getHealth() {
     return currentHealth;
 }
 
+double User_Character::getMaxHealth() {
+    return maxHealth;
+}
+
 void User_Character::setHealthAfterCombat(double &x) {
     currentHealth-=x;
+}
+
+//Heals character for half of its health
+void User_Character::healCharacter() {
+    currentHealth = currentHealth + (maxHealth/2);
+    if (currentHealth >= maxHealth)
+        currentHealth = maxHealth;
 }

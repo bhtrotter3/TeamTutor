@@ -5,7 +5,6 @@
 #ifndef TEAMTUTOR_COMBATRUNNER_H
 #define TEAMTUTOR_COMBATRUNNER_H
 
-#include "../Villians/Bosses.h"
 #include "../Villians/Monsters.h"
 #include "../Villians/Goblin.h"
 #include "../Villians/DarkElf.h"
@@ -25,9 +24,12 @@ class combatRunner {
 private:
     double damageToUser;
     double damageToOpponent;
+    combatRunner();
 
 public:
-    combatRunner();
+
+    combatRunner& getInstance();
+
     //The function below only contains functions and not real code, DOES COMBAT MENU
     void combat(Monsters &opponent, User_Character &user);
 
@@ -36,6 +38,7 @@ public:
 
     //Minus health from combat
     void setNewHealthValuesFromCombat(double &userDamage, double &opponentDamage, User_Character &user, Monsters &opponent);
+
 
     double returnDamageToUser();
     double returnDamageToOpponent();

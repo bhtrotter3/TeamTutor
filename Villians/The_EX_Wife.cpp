@@ -1,3 +1,4 @@
+
 //
 // Created by willi on 4/8/2019.
 //
@@ -7,14 +8,17 @@
 using namespace std;
 
 The_EX_Wife::The_EX_Wife()
-    :Bosses(){
+    :Monsters(){
 
-    monsterName = "Hydra";
-    currentHealth = 220.0;
+    monsterName = "Goblin King";
+    currentHealth = 75.0;
     maxHealth = currentHealth;
-    naturalAttack = 56.0;
-    naturalDefense = 80.0;
-    isMagical = true;
+    naturalAttack = 20.0;
+    naturalDefense = 20.0;
+    isMagical = false;
     isMagicResistant = true;
-    critModifier = 2;
+    //Crit Modifer is based out of 100
+    critModifer = 10;
+    isBoss = true;
 }
+
