@@ -102,3 +102,13 @@ void User_Character::healCharacter() {
     if (currentHealth >= maxHealth)
         currentHealth = maxHealth;
 }
+int User_Character::getPots(){
+    int pots = inv.getPotions();
+    return pots;
+}
+void User_Character::addPots(int pots){
+    inv.addPotions(pots);
+};
+void User_Character::usePots(){
+    inv.usePotion();
+};

@@ -90,8 +90,11 @@ void Maps::townA() { //map transtion
             else{
                 cout
                         << "Blacksmith: \"You there! You look like a nice young main character. There be goblins in a cave\n"
-                           "east of here. Take care of them and we'll let you in\"\n";
+                           "east of here. Take care of them and we'll let you in\"\n"
+                           << "You might need these.\n"
+                           << "You got 10 potions! How are you going to carry all of these?\n";
                 questOne = true;
+                combatRunner1->addPots(10);
             }
 
         }

@@ -13,6 +13,7 @@
 #include "../Heroes/User_Character.h"
 
 
+
 using namespace std;
 
 //This is a class that needs to be a singleton
@@ -45,6 +46,10 @@ public:
     double returnDamageToOpponent();
     double findUserCurrentHealth();
     double findUserMaxHealth();
+
+    int getPots();
+    void addPots(int pots);
+    void usePots();
 };
 
 

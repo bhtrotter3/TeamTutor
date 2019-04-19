@@ -68,8 +68,15 @@ void combatRunner::combat(Monsters &opponent) {
         }
 
         if (converted == "HEAL" || converted =="H"){
-            user.healCharacter();
-            cout << '\n' << '\n' << "You have restored half of your hitpoints. \n You are now at " << user.getHealth() << " health out of " << user.getMaxHealth() << '\n';
+            int potions = getPots();
+            if (potions > 0) {
+                user.healCharacter();
+                cout << '\n' << '\n' << "You have restored half of your hitpoints. \n You are now at " << user.getHealth() << " health out of " << user.getMaxHealth() << '\n';
+            }
+            else {
+                cout << "You reach for a potion, but find none, leaving yourself open to attack!\n";
+            }
+
         }
 
         if (user.getHealth() <=0){
@@ -154,4 +161,15 @@ double combatRunner::findUserCurrentHealth() {
 
 double combatRunner::findUserMaxHealth() {
     return user.getMaxHealth();
+}
+
+int combatRunner::getPots(){
+    user.getPots();
+
+}
+void combatRunner::addPots(int pots){
+    user.addPots(pots);
+}
+void combatRunner::usePots(){
+    user.usePots();
 }

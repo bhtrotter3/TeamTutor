@@ -8,6 +8,15 @@
 
 class Inventory {
 
+protected:
+    int potions = 0;
+
+public:
+    Inventory();
+    int getPotions();
+    void usePotion();
+    void addPotions(int pots);
+
 };
 
 

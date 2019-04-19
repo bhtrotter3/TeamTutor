@@ -6,6 +6,7 @@
 #define TEAMTUTOR_USER_CHARACTER_H
 
 #include "string"
+#include "../Inventory/Inventory.h"
 
 class User_Character {
 
@@ -27,6 +28,8 @@ protected:
     bool isMagical = false;
 
     std::string name = "Bill Trotter";
+
+    Inventory inv;
 
 public:
 
@@ -53,6 +56,9 @@ public:
 
     //Heals character for half its health
     void healCharacter();
+    int getPots();
+    void addPots(int pots);
+    void usePots();
 
 };
 
