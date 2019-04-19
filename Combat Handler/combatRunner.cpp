@@ -180,3 +180,9 @@ int combatRunner::getGoblinEar(){
 void combatRunner::lootGoblinEar(){
     user.lootGoblinEar();
 }
+void combatRunner::lootBand(){
+    user.lootBand();
+}
+int combatRunner::getBand(){
+    user.getBand();
+}

@@ -61,6 +61,8 @@ public:
     void usePots();
     int getGoblinEar();
     void lootGoblinEar();
+    void lootBand();
+    int getBand();
 
 };
 

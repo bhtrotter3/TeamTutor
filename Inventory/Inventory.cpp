@@ -26,3 +26,10 @@ int Inventory::getGoblinEar() {
 void Inventory::lootGoblinEar() {
     this->goblinEar += 1;
 }
+void Inventory::lootBand(){
+    this->ogreWeddingBand +=1;
+}
+int Inventory::getBand(){
+    int band = this->ogreWeddingBand;
+    return band;
+}

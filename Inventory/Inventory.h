@@ -11,6 +11,7 @@ class Inventory {
 protected:
     int potions = 0;
     int goblinEar = 0;
+    int ogreWeddingBand = 0;
 
 public:
     Inventory();
@@ -19,6 +20,8 @@ public:
     void addPotions(int pots);
     int getGoblinEar();
     void lootGoblinEar();
+    void lootBand();
+    int getBand();
 
 };
 

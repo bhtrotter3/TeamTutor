@@ -118,3 +118,9 @@ int User_Character::getGoblinEar(){
 void User_Character::lootGoblinEar(){
     inv.lootGoblinEar();
 }
+void User_Character::lootBand(){
+    inv.lootBand();
+}
+int User_Character::getBand(){
+    inv.getBand();
+}
