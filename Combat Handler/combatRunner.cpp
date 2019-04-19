@@ -71,6 +71,7 @@ void combatRunner::combat(Monsters &opponent) {
             int potions = getPots();
             if (potions > 0) {
                 user.healCharacter();
+                user.usePots();
                 cout << '\n' << '\n' << "You have restored half of your hitpoints. \n You are now at " << user.getHealth() << " health out of " << user.getMaxHealth() << '\n';
             }
             else {
@@ -172,4 +173,10 @@ void combatRunner::addPots(int pots){
 }
 void combatRunner::usePots(){
     user.usePots();
+}
+int combatRunner::getGoblinEar(){
+    user.getGoblinEar();
+}
+void combatRunner::lootGoblinEar(){
+    user.lootGoblinEar();
 }

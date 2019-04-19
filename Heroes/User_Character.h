@@ -59,6 +59,8 @@ public:
     int getPots();
     void addPots(int pots);
     void usePots();
+    int getGoblinEar();
+    void lootGoblinEar();
 
 };
 

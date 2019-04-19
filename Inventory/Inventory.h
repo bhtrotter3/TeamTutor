@@ -10,12 +10,15 @@ class Inventory {
 
 protected:
     int potions = 0;
+    int goblinEar = 0;
 
 public:
     Inventory();
     int getPotions();
     void usePotion();
     void addPotions(int pots);
+    int getGoblinEar();
+    void lootGoblinEar();
 
 };
 

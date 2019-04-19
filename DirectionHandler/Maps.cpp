@@ -27,6 +27,7 @@ bool Maps::randomEncounter(int rate) {
 void Maps::worldMap() {
     initializeMap(); // remove any tiles that might be added from a previous map
     //buildMap(); //needed for proper starting location on transition
+    combatRunner1=&combatRunner1->getInstance();
     map[3][3] = 'T'; //town
     if (questOne){
         map[7][3] = 'G';
@@ -80,9 +81,43 @@ void Maps::townA() { //map transtion
             playery = 3;
             Maps::worldMap();
         }
+        else if (playerx == 15 && playery ==5 && interact){
+            interact == false;
+            cout << " CONGRATULATIONS!! YOU GOT YOUR LUNCH! \n";
+            cout << R"(
+                                                          //
+                                                         //
+                                         _______________//__
+                                       .(______________//___).
+                                       |              /      |
+                                       |. . . . . . . / . . .|
+                                       \ . . . . . ./. . . . /
+                                        |           / ___   |
+                    _.---._             |::......./../...\.:|
+                _.-~       ~-._         |::::/::\::/:\::::::|
+            _.-~               ~-._     |::::\::/::::::X:/::|
+        _.-~                       ~---.;:::::::/::\::/:::::|
+    _.-~                                 ~\::::::n::::::::::|
+ .-~                                    _.;::/::::a::::::::/
+ :-._                               _.-~ ./::::::::d:::::::|
+ `-._~-._                   _..__.-~ _.-~|::/::::::::::::::|
+  /  ~-._~-._              / .__..--~----.YWWWWWWWWWWWWWWWP'
+ \_____(_;-._\.        _.-~_/       ~).. . \
+    /(_____  \`--...--~_.-~______..-+_______)
+  .(_________/`--...--~/    _/           /\
+ /-._     \_     (___./_..-~__.....__..-~./
+ `-._~-._   ~\--------~  .-~_..__.-~ _.-~
+     ~-._~-._ ~---------'  / .__..--~
+         ~-._\.        _.-~_/
+             \`--...--~_.-~
+              `--...--~
+            )";
+            exit(0);
+
+        }
         else if (playerx == 19 && playery ==9 && interact){
             interact = false;
-            if (isHero){
+            if (isHero && combatRunner1->getGoblinEar() >= 3){
                 map[19][8] = ' ';
                 printMap();
                 cout << "I knew I could count on you. Maybe because the rest of us can't move. Get in there.\n";
@@ -162,7 +197,13 @@ void Maps::goblinCave() { //map transition
             isHero = true;
         }
             moveTile();
-            goblinFight = randomEncounter(20);
+            if (combatRunner1->getGoblinEar() < 3) {
+                goblinFight = randomEncounter(20);
+            }
+            else if (combatRunner1->getGoblinEar() >= 3){
+                goblinFight= false;
+                cout << "I think that's all the small fries\n";
+            }
             if (goblinFight){
                 cout << '\n';
                 Goblin Gobby;
@@ -171,8 +212,12 @@ void Maps::goblinCave() { //map transition
                 cout << "Monster Health: " << Gobby.getHealth() << endl;
 
                 cout << '\n' << '\n' << "Combat!" << '\n' << '\n';
-                combatRunner1=&combatRunner1->getInstance();
+
                 combatRunner1->combat(Gobby);
+                if (Gobby.getHealth() <= 0){
+                    combatRunner1->lootGoblinEar();
+                    cout << "Needs me a trophy of come kind. \nGOBLIN EAR +1!!\n";
+                }
                 printMap();
 
 

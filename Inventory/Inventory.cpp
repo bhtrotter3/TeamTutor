@@ -17,5 +17,12 @@ void Inventory::usePotion(){
     }
 }
 void Inventory::addPotions(int pots){
-    potions += pots;
+    this->potions += pots;
+}
+
+int Inventory::getGoblinEar() {
+    return goblinEar;
+}
+void Inventory::lootGoblinEar() {
+    this->goblinEar += 1;
 }

@@ -108,7 +108,13 @@ int User_Character::getPots(){
 }
 void User_Character::addPots(int pots){
     inv.addPotions(pots);
-};
+}
 void User_Character::usePots(){
     inv.usePotion();
-};
+}
+int User_Character::getGoblinEar(){
+    inv.getGoblinEar();
+}
+void User_Character::lootGoblinEar(){
+    inv.lootGoblinEar();
+}
