@@ -27,7 +27,8 @@ bool Maps::randomEncounter(int rate) {
 void Maps::worldMap() {
     initializeMap(); // remove any tiles that might be added from a previous map
     //buildMap(); //needed for proper starting location on transition
-    combatRunner1=&combatRunner1->getInstance();
+    combatRunner1=&combatRunner1->getInstance(); //combat runner singleton
+    combatRunner1->buildInventory(); //inventory singleton
     map[3][3] = 'T'; //town
     map[9][9] = 'N'; //NPC
     if (questOne){
@@ -170,9 +171,7 @@ void Maps::goblinCave() { //map transition
     }
     map [4][7] = ' ';
     map [6][7] = ' ';
-    bool t1 = true;
-    bool t2 = true;
-    bool t3 = true;
+
 
     if (t1) {
         map[1][1] = 'O'; //treasure
@@ -199,17 +198,17 @@ void Maps::goblinCave() { //map transition
             playery = 3;
             Maps::worldMap();
         }
-        else if (playerx == 1 && playery ==1 && interact) {//treasure
+        else if (playerx == 1 && playery ==1 && interact&&t1) {//treasure
             map[1][1] = ' ';
             printMap();
             t1 = false;
         }
-        else if (playerx == 1 && playery ==7 && interact) {//treasure
+        else if (playerx == 1 && playery ==7 && interact&&t2) {//treasure
             map[1][7] = ' ';
             printMap();
             t2 = false;
         }
-        else if (playerx == 5 && playery ==9 && interact) {//treasure
+        else if (playerx == 5 && playery ==9 && interact&&t3) {//treasure
             map[5][9] = ' ';
             printMap();
             t3 = false;

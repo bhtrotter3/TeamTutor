@@ -7,6 +7,12 @@ using namespace std;
 
 Inventory::Inventory(){}
 
+
+Inventory& Inventory::getInstance() {
+    static Inventory inventoryInstance;
+    return inventoryInstance;
+}
+
 int Inventory::getPotions(){
    return potions;
 }

@@ -2,6 +2,8 @@
 // Created by willi on 4/8/2019.
 //
 
+//Thaddeus, consider making the player take damage from the monster when you use the heal option
+
 #include "combatRunner.h"
 //#include "../Heroes/User_Character.h"
 #include <iostream>
@@ -162,6 +164,10 @@ double combatRunner::findUserCurrentHealth() {
 
 double combatRunner::findUserMaxHealth() {
     return user.getMaxHealth();
+}
+
+void combatRunner::buildInventory(){
+    user.buildInventory();
 }
 
 int combatRunner::getPots(){

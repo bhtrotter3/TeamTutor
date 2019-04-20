@@ -102,25 +102,30 @@ void User_Character::healCharacter() {
     if (currentHealth >= maxHealth)
         currentHealth = maxHealth;
 }
+
+void User_Character::buildInventory(){
+    inv=&inv->getInstance();
+}
 int User_Character::getPots(){
-    int pots = inv.getPotions();
+    int pots = inv->getPotions();
     return pots;
 }
 void User_Character::addPots(int pots){
-    inv.addPotions(pots);
+
+    inv->addPotions(pots);
 }
 void User_Character::usePots(){
-    inv.usePotion();
+    inv->usePotion();
 }
 int User_Character::getGoblinEar(){
-    inv.getGoblinEar();
+    inv->getGoblinEar();
 }
 void User_Character::lootGoblinEar(){
-    inv.lootGoblinEar();
+    inv->lootGoblinEar();
 }
 void User_Character::lootBand(){
-    inv.lootBand();
+    inv->lootBand();
 }
 int User_Character::getBand(){
-    inv.getBand();
+    inv->getBand();
 }

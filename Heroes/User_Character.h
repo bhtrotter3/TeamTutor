@@ -29,7 +29,7 @@ protected:
 
     std::string name = "Bill Trotter";
 
-    Inventory inv;
+    Inventory* inv;
 
 public:
 
@@ -56,6 +56,7 @@ public:
 
     //Heals character for half its health
     void healCharacter();
+    void buildInventory();
     int getPots();
     void addPots(int pots);
     void usePots();

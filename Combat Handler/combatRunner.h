@@ -30,6 +30,7 @@ private:
 
 public:
 
+
     combatRunner& getInstance();
 
     //The function below only contains functions and not real code, DOES COMBAT MENU
@@ -46,6 +47,8 @@ public:
     double returnDamageToOpponent();
     double findUserCurrentHealth();
     double findUserMaxHealth();
+
+    void buildInventory();
 
     int getPots();
     void addPots(int pots);
