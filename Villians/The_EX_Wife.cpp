@@ -13,7 +13,7 @@ The_EX_Wife::The_EX_Wife()
     :Monsters(){
 
     monsterName = "Goblin King";
-    currentHealth = 75.0;
+    currentHealth = 100.0;
     maxHealth = currentHealth;
     naturalAttack = 20.0;
     naturalDefense = 20.0;
