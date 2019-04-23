@@ -39,3 +39,18 @@ int Inventory::getBand(){
     int band = this->ogreWeddingBand;
     return band;
 }
+
+void Inventory::getWand(User_Character &user)
+{
+    Wand::getWand(user);
+}
+
+void Inventory::getRapierSword(User_Character &user)
+{
+    RapierSword::getRapierSword(user);
+}
+
+void Inventory::getBowNArrow(User_Character &user)
+{
+    BowNArrow::getBowNArrow(user);
+}
