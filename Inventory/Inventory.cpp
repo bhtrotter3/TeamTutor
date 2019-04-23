@@ -50,7 +50,7 @@ void Inventory::getRapierSword(User_Character &user)
     RapierSword::getRapierSword(user);
 }
 
-void Inventory::getBowNArrow(User_Character &user)
+void Inventory::getBowAndArrow(User_Character &user)
 {
-    BowNArrow::getBowNArrow(user);
+    BowNArrow::getBowAndArrow(user);
 }
