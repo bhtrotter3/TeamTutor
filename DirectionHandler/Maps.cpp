@@ -67,6 +67,7 @@ void Maps::worldMap() {
             } else if (combatRunner1->getBand() > 0) {
                 cout << "Thank you brave sir knight!\n";
                 //GIVE REWARD HERE;
+
             }
         }else {
                 moveTile();
@@ -209,7 +210,7 @@ void Maps::goblinCave() { //map transition
             combatRunner1->resetUserStats();
 
             //Equip a weapon, go through comabt runner to increase stats
-            combatRunner1->addWeapon(Bowie);
+            //combatRunner1->addWeapon(Bowie);
 
             //Tell the user what happen
             printMap();

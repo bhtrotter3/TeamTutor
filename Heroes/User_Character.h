@@ -7,9 +7,6 @@
 
 #include "string"
 #include "../Inventory/Inventory.h"
-#include "../Weapons/bowandarrow.h"
-#include "../Weapons/wand.h"
-#include "../Weapons/rapiersword.h"
 
 class User_Character {
 

@@ -11,6 +11,9 @@
 #include "../Villians/Monsters.h"
 #include "../Villians/Goblin.h"
 #include "../Combat Handler/combatRunner.h"
+#include "../Weapons/bowandarrow.h"
+#include "../Weapons/rapiersword.h"
+#include "../Weapons/wand.h"
 
 class Maps: public Control { //inherits the basic movement functions, but lets me keep map data separate
                                 //could maybe be one class, or possibly pass the variable around, but this seemed

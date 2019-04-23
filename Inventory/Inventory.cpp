@@ -41,17 +41,4 @@ int Inventory::getBand(){
     return band;
 }
 
-void Inventory::getWand(User_Character &user)
-{
-    Wand::getWand(user);
-}
 
-void Inventory::getRapierSword(User_Character &user)
-{
-    RapierSword::getRapierSword(user);
-}
-
-void Inventory::getBowAndArrow(User_Character &user)
-{
-    BowAndArrow::getBowAndArrow(user);
-}

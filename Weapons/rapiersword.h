@@ -2,6 +2,7 @@
 #define TEAMTUTOR_RAPIERSWORD_H
 
 #include "../Heroes/User_Character.h"
+
 #include <iostream>
 
 class RapierSword {

@@ -5,7 +5,6 @@
 //Thaddeus, consider making the player take damage from the monster when you use the heal option
 
 #include "combatRunner.h"
-//#include "../Heroes/User_Character.h"
 #include <iostream>
 #include <string>
 
