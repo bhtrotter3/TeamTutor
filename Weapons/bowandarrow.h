@@ -1,8 +1,9 @@
-#include "../Heroes/User_Character.h"
-
 #ifndef TEAMTUTOR_BOWANDARROW_H
 #define TEAMTUTOR_BOWANDARROW_H
 
+#include "../Heroes/User_Character.h"
+
+using namespace std;
 
 class BowAndArrow {
 

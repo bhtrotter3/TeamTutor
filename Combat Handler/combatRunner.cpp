@@ -52,8 +52,9 @@ void combatRunner::combat(Monsters &opponent) {
         for (short i = 0; i < answer.size(); ++i)
             converted += (std::toupper(answer[i], settings));
 
-
+        //IF USER DECIDES TO ATTACK
         if (converted == "ATTACK" || converted == "A") {
+
             //First we have to calc damage
             calculateDamage(opponent);
 
@@ -64,11 +65,13 @@ void combatRunner::combat(Monsters &opponent) {
             cout << '\n' << "Monster's current health is: " << opponent.getHealth() << " out of " << opponent.getMaxHealth() << '\n';
         }
 
+        //What happens when we want to flee
         if (converted == "FLEE" || converted =="F"){
             cout << '\n' << '\n' << "You have fled." << '\n';
             break;
         }
 
+        //What happens when you want to heal
         if (converted == "HEAL" || converted =="H"){
             int potions = getPots();
             if (potions > 0) {
@@ -76,16 +79,20 @@ void combatRunner::combat(Monsters &opponent) {
                 user.usePots();
                 cout << '\n' << '\n' << "You have restored half of your hitpoints. \n You are now at " << user.getHealth() << " health out of " << user.getMaxHealth() << '\n';
             }
+
+            //If you have no potions
             else {
                 cout << "You reach for a potion, but find none, leaving yourself open to attack!\n";
             }
 
         }
 
+        //What happens when health is at zero
         if (user.getHealth() <=0){
             cout << '\n' << "You have died" << '\n';
             exit(0);
         }
+
         if (opponent.getHealth() <= 0){
             cout << '\n' << "You have slain the monster!" << '\n';
             break;
@@ -95,8 +102,13 @@ void combatRunner::combat(Monsters &opponent) {
     }
 }
 
+
 //
-//This function will
+//This function will reset users stats after dequiping a weapon
+void combatRunner::resetUserStats() {
+    user.resetStats();
+}
+
 
 //
 //Function is defined as calculating damage based on information passed
@@ -172,7 +184,6 @@ void combatRunner::buildInventory(){
 
 int combatRunner::getPots(){
     user.getPots();
-
 }
 void combatRunner::addPots(int pots){
     user.addPots(pots);

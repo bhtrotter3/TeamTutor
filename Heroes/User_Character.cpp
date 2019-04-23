@@ -92,6 +92,12 @@ double User_Character::getMaxHealth() {
     return maxHealth;
 }
 
+void User_Character::resetStats() {
+    currentAttack = naturalAttack;
+    currentDefense = naturalDefense;
+
+}
+
 void User_Character::setHealthAfterCombat(double &x) {
     currentHealth-=x;
 }

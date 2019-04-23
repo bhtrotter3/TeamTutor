@@ -1,6 +1,8 @@
 #include "wand.h"
 #include <iostream>
+
 using namespace std;
+
 
 void Wand::getWand(User_Character &user)
 {

@@ -47,6 +47,7 @@ public:
     double returnDamageToOpponent();
     double findUserCurrentHealth();
     double findUserMaxHealth();
+    void resetUserStats();
 
     void buildInventory();
 

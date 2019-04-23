@@ -198,44 +198,67 @@ void Maps::goblinCave() { //map transition
             playery = 3;
             Maps::worldMap();
         }
+
         else if (playerx == 1 && playery ==1 && interact&&t1) {//treasure
             map[1][1] = ' ';
+            cout << "Treasure code ofr bowandarrow goes here, code to equipment goes" << endl;
+
+            BowAndArrow Bowie;
+
+            //Reset user stats
+            combatRunner1->resetUserStats();
+
+            //Equip a weapon, go through comabt runner to increase stats
+            combatRunner1->addWeapon(Bowie);
+
+            //Tell the user what happen
             printMap();
             t1 = false;
         }
+
         else if (playerx == 1 && playery ==7 && interact&&t2) {//treasure
             map[1][7] = ' ';
+            cout << "Treasure goes here" << endl;
+
+            RapierSword swordy;
+
             printMap();
             t2 = false;
         }
+
         else if (playerx == 5 && playery ==9 && interact&&t3) {//treasure
             map[5][9] = ' ';
+
+            Wand wandy;
+
+            cout << "Treasure goes here" << endl;
             printMap();
             t3 = false;
         }
+
+        //Combat to fight goblin king
         else if (playerx == 19 && playery ==7 && interact){
             map[19][7] = ' ';
+
             cout << "Goblin Chieftain: \"You may have butchered my boys, but I'm slightly bigger! Have at you!\" \n";
             The_EX_Wife Goblin_King;
 
             cout << "User health: " << combatRunner1->findUserCurrentHealth() << endl;
             cout << "Monster Health: " << Goblin_King.getHealth() << endl;
-
             cout << '\n' << '\n' << "Combat!" << '\n' << '\n';
 
             combatRunner1->combat(Goblin_King);
-            if (Goblin_King.getHealth() <= 0) {
 
+            if (Goblin_King.getHealth() <= 0) {
                 cout << "I have slain the Goblin King!! I did it I am a hero!!\n";
             }
-            printMap();
-
-
             printMap();
             cout << "All I wanted was some lunch. Now I'm cutting the head off of some ugly monster that smells\n"
                     << "like a sewer. I should've stayed in school, like mama wanted.\n";
             isHero = true;
         }
+
+        //This is moving a tile and looking for quests, fights
             moveTile();
             if (npcQuest) {
                 ogreFight = randomEncounter(20);
@@ -255,6 +278,7 @@ void Maps::goblinCave() { //map transition
                 cout << '\n' << '\n' << "Combat!" << '\n' << '\n';
 
                 combatRunner1->combat(Orcy);
+
                 if (Orcy.getHealth() <= 0) {
 
                     cout << "I have slain the Orc!! Good job me!!\n";

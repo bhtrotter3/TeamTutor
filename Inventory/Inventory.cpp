@@ -3,6 +3,7 @@
 //
 
 #include "Inventory.h"
+
 using namespace std;
 
 Inventory::Inventory(){}
@@ -52,5 +53,5 @@ void Inventory::getRapierSword(User_Character &user)
 
 void Inventory::getBowAndArrow(User_Character &user)
 {
-    BowNArrow::getBowAndArrow(user);
+    BowAndArrow::getBowAndArrow(user);
 }

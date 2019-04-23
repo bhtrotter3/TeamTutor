@@ -7,6 +7,9 @@
 
 #include "string"
 #include "../Inventory/Inventory.h"
+#include "../Weapons/bowandarrow.h"
+#include "../Weapons/wand.h"
+#include "../Weapons/rapiersword.h"
 
 class User_Character {
 
@@ -26,6 +29,7 @@ protected:
     int critModifer = 0;
 
     bool isMagical = false;
+    bool hasWeaponEquipment = false;
 
     std::string name = "Bill Trotter";
 
@@ -51,6 +55,7 @@ public:
     std::string getName();
     double getHealth();
     double getMaxHealth();
+    void resetStats();
 
     void setHealthAfterCombat(double &x);
 
