@@ -30,7 +30,7 @@ private:
 
 public:
 
-
+    //Needed to make a singleton
     combatRunner& getInstance();
 
     //The function below only contains functions and not real code, DOES COMBAT MENU
@@ -50,6 +50,7 @@ public:
 
     void buildInventory();
 
+    //Functions below are responsible for adding, using and collecting items
     int getPots();
     void addPots(int pots);
     void usePots();

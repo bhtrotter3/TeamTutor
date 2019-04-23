@@ -6,6 +6,8 @@
 
 using namespace std;
 
+//THIS IS ALL THE DARK ELF STATS FOR SETUP
+
 DarkElf::DarkElf()
     :Monsters() {
 

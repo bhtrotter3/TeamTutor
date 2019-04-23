@@ -6,6 +6,8 @@
 
 using namespace std;
 
+//STANDARD STATS OF ALL ORCS
+
 Orc::Orc()
     :Monsters(){
 

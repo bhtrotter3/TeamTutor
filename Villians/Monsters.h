@@ -12,6 +12,7 @@ using namespace std;
 
 class Monsters {
 
+// Priviate variables of monsters, each one of them have these stats
 protected:
     string monsterName;
     double currentHealth;
@@ -24,6 +25,7 @@ protected:
     int critModifer;
 
 public:
+    //All functions that every monster can use, most of these return private variables
     Monsters();
     Monsters(string a, double b);
     double getDefense();
@@ -36,6 +38,7 @@ public:
     bool getIsBoss();
     int getCritModifier();
 
+    //This function will reset a monsters health
     void setMonsterHealthAfterCombat(double &x);
 };
 

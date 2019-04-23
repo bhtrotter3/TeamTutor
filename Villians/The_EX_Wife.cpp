@@ -7,6 +7,8 @@
 
 using namespace std;
 
+//STANDARD STATS OF THE EX WIFE, ONE SPECIFIC STAT ADDED TO THIS CLASS WAS A CRIT MODIFER
+
 The_EX_Wife::The_EX_Wife()
     :Monsters(){
 

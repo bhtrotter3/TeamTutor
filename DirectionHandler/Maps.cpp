@@ -216,7 +216,21 @@ void Maps::goblinCave() { //map transition
         else if (playerx == 19 && playery ==7 && interact){
             map[19][7] = ' ';
             cout << "Goblin Chieftain: \"You may have butchered my boys, but I'm slightly bigger! Have at you!\" \n";
-            //Goblin Boss fight
+            The_EX_Wife Goblin_King;
+
+            cout << "User health: " << combatRunner1->findUserCurrentHealth() << endl;
+            cout << "Monster Health: " << Goblin_King.getHealth() << endl;
+
+            cout << '\n' << '\n' << "Combat!" << '\n' << '\n';
+
+            combatRunner1->combat(Goblin_King);
+            if (Goblin_King.getHealth() <= 0) {
+
+                cout << "I have slain the Goblin King!! I did it I am a hero!!\n";
+            }
+            printMap();
+
+
             printMap();
             cout << "All I wanted was some lunch. Now I'm cutting the head off of some ugly monster that smells\n"
                     << "like a sewer. I should've stayed in school, like mama wanted.\n";
@@ -227,28 +241,65 @@ void Maps::goblinCave() { //map transition
                 ogreFight = randomEncounter(20);
             }
             elfFight = randomEncounter(5);
+
+            //ORC FIGHT CODE, RUNS COMBAT FOR FIGHTING A ORC
             if (ogreFight){
+
                 ogreFight = false;
-                //OGRE FIGHT GOES HERE;
+
+                Orc Orcy;
+
+                cout << "User health: " << combatRunner1->findUserCurrentHealth() << endl;
+                cout << "Monster Health: " << Orcy.getHealth() << endl;
+
+                cout << '\n' << '\n' << "Combat!" << '\n' << '\n';
+
+                combatRunner1->combat(Orcy);
+                if (Orcy.getHealth() <= 0) {
+
+                    cout << "I have slain the Orc!! Good job me!!\n";
+                }
+
                 cout << "I'll need some kinda trophy.\n"
                     << "WEDDING BAND +1\n";
                 npcQuest = false;
                 combatRunner1->lootBand();
 
+                printMap();
             }
 
+            //ELF FIGHT CODE, THIS CODE WILL RUN THE ELF FIGHT ON THE MAP
             else if (elfFight){
                 elfFight = false;
-                cout << "ELF FIGHT\n";
+
+                DarkElf Elfy;
+
+                cout << "User health: " << combatRunner1->findUserCurrentHealth() << endl;
+                cout << "Monster Health: " << Elfy.getHealth() << endl;
+
+                cout << '\n' << '\n' << "Combat!" << '\n' << '\n';
+
+                combatRunner1->combat(Elfy);
+                if (Elfy.getHealth() <= 0) {
+
+                    cout << "I have slain the Dark Elf!! Good job me!!\n";
+                }
+                printMap();
+
             }
 
+            //CHECKS TO SEE IF GOBLIN EARS ARE LESS THAT 3, IF THEY ARE THEN YOU HAVE TO FIGHT A GOBLIN
             else if (combatRunner1->getGoblinEar() < 3) {
                 goblinFight = randomEncounter(20);
             }
+
+            //IF YOU HAVE COLLECTED MORE THAN 3 EARS, THEN YOU DONT HAVE TO FIGHT GOBLINS
             else if (combatRunner1->getGoblinEar() >= 3){
                 goblinFight= false;
                 cout << "I think that's all the small fries\n";
             }
+
+            //WHAT HAPPENS IF YOU END UP FIGHTING A GOBLIN
             if (goblinFight){
                 goblinFight = false;
                 cout << '\n';
@@ -262,12 +313,10 @@ void Maps::goblinCave() { //map transition
                 combatRunner1->combat(Gobby);
                 if (Gobby.getHealth() <= 0){
                     combatRunner1->lootGoblinEar();
+                    cout << "I have slain the Goblin! Good job me!!\n";
                     cout << "Needs me a trophy of come kind. \nGOBLIN EAR +1!!\n";
                 }
                 printMap();
-
-
-
 
             }
 

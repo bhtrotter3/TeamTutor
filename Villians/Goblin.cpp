@@ -7,6 +7,7 @@
 using namespace std;
 
 //Intialization for Goblin
+
 Goblin::Goblin()
     :Monsters(){
 

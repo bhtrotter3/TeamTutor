@@ -10,6 +10,8 @@ using namespace std;
 
 Monsters::Monsters()
 {}
+
+//ALL Monsters have names and health
 Monsters::Monsters(string a, double b){
     monsterName=a;
     currentHealth=b;
@@ -57,6 +59,7 @@ int Monsters::getCritModifier() {
     return critModifer;
 }
 
+//ACTIVELY CHANGING A MONSTER'S HEALTH!
 void Monsters::setMonsterHealthAfterCombat(double &x) {
     currentHealth-=x;
 }
