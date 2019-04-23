@@ -27,7 +27,10 @@ bool Maps::randomEncounter(int rate) {
 void Maps::worldMap() {
     initializeMap(); // remove any tiles that might be added from a previous map
     //buildMap(); //needed for proper starting location on transition
+    combatRunner1=&combatRunner1->getInstance(); //combat runner singleton
+    combatRunner1->buildInventory(); //inventory singleton
     map[3][3] = 'T'; //town
+    map[9][9] = 'N'; //NPC
     if (questOne){
         map[7][3] = 'G';
     }
@@ -55,9 +58,19 @@ void Maps::worldMap() {
             playery = 1;
             Maps::goblinCave(); //map switch
         }
-        else {
-            moveTile();
-        }
+        if (playerx == 9 && playery == 9 && interact) {
+            interact = false;
+            if (combatRunner1->getBand() == 0) {
+                cout << "My ogre husband is cheating on me with some goblin whore!\n"
+                     << "Hunt him down and murder him and I'll give you a bitchin' weapon.\n";
+                npcQuest = true;
+            } else if (combatRunner1->getBand() > 0) {
+                cout << "Thank you brave sir knight!\n";
+                //GIVE REWARD HERE;
+            }
+        }else {
+                moveTile();
+            }
 
     }
 }
@@ -80,9 +93,43 @@ void Maps::townA() { //map transtion
             playery = 3;
             Maps::worldMap();
         }
+        else if (playerx == 15 && playery ==5 && interact){
+            interact = false;
+            cout << " CONGRATULATIONS!! YOU GOT YOUR LUNCH! \n";
+            cout << R"(
+                                                          //
+                                                         //
+                                         _______________//__
+                                       .(______________//___).
+                                       |              /      |
+                                       |. . . . . . . / . . .|
+                                       \ . . . . . ./. . . . /
+                                        |           / ___   |
+                    _.---._             |::......./../...\.:|
+                _.-~       ~-._         |::::/::\::/:\::::::|
+            _.-~               ~-._     |::::\::/::::::X:/::|
+        _.-~                       ~---.;:::::::/::\::/:::::|
+    _.-~                                 ~\::::::n::::::::::|
+ .-~                                    _.;::/::::a::::::::/
+ :-._                               _.-~ ./::::::::d:::::::|
+ `-._~-._                   _..__.-~ _.-~|::/::::::::::::::|
+  /  ~-._~-._              / .__..--~----.YWWWWWWWWWWWWWWWP'
+ \_____(_;-._\.        _.-~_/       ~).. . \
+    /(_____  \`--...--~_.-~______..-+_______)
+  .(_________/`--...--~/    _/           /\
+ /-._     \_     (___./_..-~__.....__..-~./
+ `-._~-._   ~\--------~  .-~_..__.-~ _.-~
+     ~-._~-._ ~---------'  / .__..--~
+         ~-._\.        _.-~_/
+             \`--...--~_.-~
+              `--...--~
+            )";
+            exit(0);
+
+        }
         else if (playerx == 19 && playery ==9 && interact){
             interact = false;
-            if (isHero){
+            if (isHero && combatRunner1->getGoblinEar() >= 3){
                 map[19][8] = ' ';
                 printMap();
                 cout << "I knew I could count on you. Maybe because the rest of us can't move. Get in there.\n";
@@ -90,8 +137,11 @@ void Maps::townA() { //map transtion
             else{
                 cout
                         << "Blacksmith: \"You there! You look like a nice young main character. There be goblins in a cave\n"
-                           "east of here. Take care of them and we'll let you in\"\n";
+                           "east of here. Take care of them and we'll let you in\"\n"
+                           << "You might need these.\n"
+                           << "You got 10 potions! How are you going to carry all of these?\n";
                 questOne = true;
+                combatRunner1->addPots(10);
             }
 
         }
@@ -104,6 +154,8 @@ void Maps::townA() { //map transtion
 void Maps::goblinCave() { //map transition
     initializeMap();
     bool goblinFight= false;
+    bool elfFight = false;
+    bool ogreFight = false;
 
     for (int x=0; x < 21; x++){
         map[x][2] = '=';
@@ -120,10 +172,19 @@ void Maps::goblinCave() { //map transition
     map [4][7] = ' ';
     map [6][7] = ' ';
 
-    map[1][1] = 'O'; //treasure
-    map [1][7] = 'O'; // treasure
-    map[5][9] = 'O'; //treasure
-    map[19][7] = 'B'; //Goblin Boss
+
+    if (t1) {
+        map[1][1] = 'O'; //treasure
+    }
+    if (t2) {
+        map[1][7] = 'O'; // treasure
+    }
+    if (t3) {
+        map[5][9] = 'O'; //treasure
+    }
+    if (!isHero) {
+        map[19][7] = 'B'; //Goblin Boss
+    }
     map[19][1] = 'E'; //Entrance
     buildMap(); //update map tiles
 
@@ -137,17 +198,20 @@ void Maps::goblinCave() { //map transition
             playery = 3;
             Maps::worldMap();
         }
-        else if (playerx == 1 && playery ==1 && interact) {//treasure
+        else if (playerx == 1 && playery ==1 && interact&&t1) {//treasure
             map[1][1] = ' ';
             printMap();
+            t1 = false;
         }
-        else if (playerx == 1 && playery ==7 && interact) {//treasure
+        else if (playerx == 1 && playery ==7 && interact&&t2) {//treasure
             map[1][7] = ' ';
             printMap();
+            t2 = false;
         }
-        else if (playerx == 5 && playery ==9 && interact) {//treasure
+        else if (playerx == 5 && playery ==9 && interact&&t3) {//treasure
             map[5][9] = ' ';
             printMap();
+            t3 = false;
         }
         else if (playerx == 19 && playery ==7 && interact){
             map[19][7] = ' ';
@@ -159,8 +223,34 @@ void Maps::goblinCave() { //map transition
             isHero = true;
         }
             moveTile();
-            goblinFight = randomEncounter(20);
+            if (npcQuest) {
+                ogreFight = randomEncounter(20);
+            }
+            elfFight = randomEncounter(5);
+            if (ogreFight){
+                ogreFight = false;
+                //OGRE FIGHT GOES HERE;
+                cout << "I'll need some kinda trophy.\n"
+                    << "WEDDING BAND +1\n";
+                npcQuest = false;
+                combatRunner1->lootBand();
+
+            }
+
+            else if (elfFight){
+                elfFight = false;
+                cout << "ELF FIGHT\n";
+            }
+
+            else if (combatRunner1->getGoblinEar() < 3) {
+                goblinFight = randomEncounter(20);
+            }
+            else if (combatRunner1->getGoblinEar() >= 3){
+                goblinFight= false;
+                cout << "I think that's all the small fries\n";
+            }
             if (goblinFight){
+                goblinFight = false;
                 cout << '\n';
                 Goblin Gobby;
 
@@ -168,8 +258,12 @@ void Maps::goblinCave() { //map transition
                 cout << "Monster Health: " << Gobby.getHealth() << endl;
 
                 cout << '\n' << '\n' << "Combat!" << '\n' << '\n';
-                combatRunner1=&combatRunner1->getInstance();
+
                 combatRunner1->combat(Gobby);
+                if (Gobby.getHealth() <= 0){
+                    combatRunner1->lootGoblinEar();
+                    cout << "Needs me a trophy of come kind. \nGOBLIN EAR +1!!\n";
+                }
                 printMap();
 
 

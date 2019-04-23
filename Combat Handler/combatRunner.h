@@ -13,6 +13,7 @@
 #include "../Heroes/User_Character.h"
 
 
+
 using namespace std;
 
 //This is a class that needs to be a singleton
@@ -28,6 +29,7 @@ private:
     User_Character user;
 
 public:
+
 
     combatRunner& getInstance();
 
@@ -45,6 +47,16 @@ public:
     double returnDamageToOpponent();
     double findUserCurrentHealth();
     double findUserMaxHealth();
+
+    void buildInventory();
+
+    int getPots();
+    void addPots(int pots);
+    void usePots();
+    int getGoblinEar();
+    void lootGoblinEar();
+    void lootBand();
+    int getBand();
 };
 
 

@@ -2,6 +2,8 @@
 // Created by willi on 4/8/2019.
 //
 
+//Thaddeus, consider making the player take damage from the monster when you use the heal option
+
 #include "combatRunner.h"
 //#include "../Heroes/User_Character.h"
 #include <iostream>
@@ -68,8 +70,16 @@ void combatRunner::combat(Monsters &opponent) {
         }
 
         if (converted == "HEAL" || converted =="H"){
-            user.healCharacter();
-            cout << '\n' << '\n' << "You have restored half of your hitpoints. \n You are now at " << user.getHealth() << " health out of " << user.getMaxHealth() << '\n';
+            int potions = getPots();
+            if (potions > 0) {
+                user.healCharacter();
+                user.usePots();
+                cout << '\n' << '\n' << "You have restored half of your hitpoints. \n You are now at " << user.getHealth() << " health out of " << user.getMaxHealth() << '\n';
+            }
+            else {
+                cout << "You reach for a potion, but find none, leaving yourself open to attack!\n";
+            }
+
         }
 
         if (user.getHealth() <=0){
@@ -154,4 +164,31 @@ double combatRunner::findUserCurrentHealth() {
 
 double combatRunner::findUserMaxHealth() {
     return user.getMaxHealth();
+}
+
+void combatRunner::buildInventory(){
+    user.buildInventory();
+}
+
+int combatRunner::getPots(){
+    user.getPots();
+
+}
+void combatRunner::addPots(int pots){
+    user.addPots(pots);
+}
+void combatRunner::usePots(){
+    user.usePots();
+}
+int combatRunner::getGoblinEar(){
+    user.getGoblinEar();
+}
+void combatRunner::lootGoblinEar(){
+    user.lootGoblinEar();
+}
+void combatRunner::lootBand(){
+    user.lootBand();
+}
+int combatRunner::getBand(){
+    user.getBand();
 }

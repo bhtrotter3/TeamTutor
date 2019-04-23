@@ -19,6 +19,10 @@ protected:
     bool fightTime = false;
     bool questOne = false;
     bool isHero= false;
+    bool npcQuest = false;
+    bool t1 = true; //treasures
+    bool t2 = true;
+    bool t3 = true;
     combatRunner* combatRunner1;
 public:
     Maps ();
