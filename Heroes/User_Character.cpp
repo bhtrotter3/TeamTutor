@@ -148,3 +148,6 @@ void User_Character::getBowAndArrow()
 {
     inv->getBowAndArrow(*this);
 }
+    void getWand(User_Character &user);
+    void getRapierSword(User_Character &user);
+    void getBowAndArrow(User_Character &user);
