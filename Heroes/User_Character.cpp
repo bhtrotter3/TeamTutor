@@ -1,150 +1,204 @@
-#include "User_Character.h"
+#include "combatRunner.h"
 #include <iostream>
+#include <string>
 
 using namespace std;
 
-//Adds value to user attack
-void User_Character::addAttack(int x){
-    currentAttack+=x;
+//
+//intialization
+combatRunner::combatRunner() {
+
+    damageToOpponent = 0.0;
+    damageToUser = 0.0;
 }
 
-//Reset user attack
-void User_Character::resetAttack(){
-    currentAttack = naturalAttack;
+combatRunner& combatRunner::getInstance() {
+    static combatRunner combatInstance;
+    return combatInstance;
 }
 
-//Adds modifer to current Defense
-void User_Character::addDefense(int x){
-    currentDefense+=x;
-}
+//
+//This function sole mission is to run functions, everthing else is defined else where
+void combatRunner::combat(Monsters &opponent) {
 
-//Resets user defense
-void User_Character::resetDefense(){
-    currentDefense = naturalDefense;
-}
+    //This function is to run programs and do nothing else
+    //The whole purpose of this being here is that this is the final layer that holds combat in place
 
-//Adds to weapon modifer
-void User_Character::addWeaponModifer(int x){
-    weaponModifer+=x;
-}
+    string answer;
 
-//Resets Weapons Modifer
-void User_Character::resetWeaponModifer() {
-    weaponModifer = 0;
-}
+    //Never ending loop that will check to see if the user wants to flee for to attack
+    while (true) {
 
-//Ups crit modifer
-void User_Character::addCritModifer(int x){
-    critModifer+=x;
-}
+        cout << "========================" << '\n';
+        cout << "=                      =" << "\n";
+        cout << "= ATTACK / FLEE / HEAL =" << '\n';
+        cout << "=                      =" << '\n';
+        cout << "========================" << '\n' << '\n' << user.getName() + " VERSUS " + opponent.getName() << '\n' << endl;
+        cout << "What would you like to do: ";
 
-//Reset crit modifer
-void User_Character::resetCritModifer(){
-    critModifer = 1;
-}
+        cin.clear();
+        cin >> answer;
 
-//Adds health to user, user can never go over max health
-void User_Character::addHealth(int x) {
-    currentHealth += x;
-    if (currentHealth >= maxHealth)
-        currentHealth = maxHealth;
-        cout << '\n' << "You are at max health";
-}
+        //Code needed to convert uppperToLowerCase
+        locale settings;
+        std::string converted;
+        for (short i = 0; i < answer.size(); ++i)
+            converted += (std::toupper(answer[i], settings));
 
-//Adds health to user, user can never go over max health
-void User_Character::minusHealth(int x) {
-    currentHealth -= x;
-    if (currentHealth <= 0){
-        cout << '\n' << '\n' << "Your Health has fallen to ZERO...You are Dead." << '\n';
+        //IF USER DECIDES TO ATTACK
+        if (converted == "ATTACK" || converted == "A") {
+
+            //First we have to calc damage
+            calculateDamage(opponent);
+
+            //Then we have to set damage to monster and user
+            cout << '\n' << "Damage done to " << user.getName() << ": " << damageToUser;
+            cout << '\n' << "Damage done to " << opponent.getName() << ": " << damageToOpponent;
+            cout << '\n' << "Your Current Health is: " << user.getHealth() << " out of " << user.getMaxHealth();
+            cout << '\n' << "Monster's current health is: " << opponent.getHealth() << " out of " << opponent.getMaxHealth() << '\n';
+        }
+
+        //What happens when we want to flee
+        if (converted == "FLEE" || converted =="F"){
+            cout << '\n' << '\n' << "You have fled." << '\n';
+            break;
+        }
+
+        //What happens when you want to heal
+        if (converted == "HEAL" || converted =="H"){
+            int potions = getPots();
+            if (potions > 0) {
+                user.healCharacter();
+                user.usePots();
+                cout << '\n' << '\n' << "You have restored half of your hitpoints. \n You are now at " << user.getHealth() << " health out of " << user.getMaxHealth() << '\n';
+            }
+
+            //If you have no potions
+            else {
+                cout << "You reach for a potion, but find none, leaving yourself open to attack!\n";
+            }
+
+        }
+
+        //What happens when health is at zero
+        if (user.getHealth() <=0){
+            cout << '\n' << "You have died" << '\n';
+            exit(0);
+        }
+
+        if (opponent.getHealth() <= 0){
+            cout << '\n' << "You have slain the monster!" << '\n';
+            break;
+        }
+
+
     }
 }
 
-//Adds x to max health
-void User_Character::addMaxHealth(int x) {
-    maxHealth+=x;
+
+//
+//This function will reset users stats after dequiping a weapon
+void combatRunner::resetUserStats1() {
+    user.resetUserStats1();
+}
+void combatRunner::resetUserStats2() {
+    user.resetUserStats2();
+}
+void combatRunner::resetUserStats3() {
+    user.resetUserStats3();
 }
 
-int User_Character::getAttack() {
-    return currentAttack;
+
+//
+//Function is defined as calculating damage based on information passed
+void combatRunner::calculateDamage(Monsters &opponent){
+
+    //Calculating the damage the user will do to the opponent
+    //opponent Damage = damage done to the opponent
+    double opponentDamage = (user.getAttack()*4 - opponent.getDefense()*2) + 1;
+    if (opponentDamage < 3)
+        opponentDamage = 2;
+
+    double userDamage = (opponent.getAttack()*4 - user.getDefense()*2) + 1;
+    if (userDamage < 4)
+        userDamage = 3;
+
+    //Statements below check to see if magical weapons are used
+    //Magical weapons add a 10% increase to damage
+    //Statements only happen if someone has a magical weapon and the other doesnt.
+    if (user.getIfMagical() == true && opponent.getIsMonsterMagicResistant() == false)
+    {
+        opponentDamage += opponentDamage*0.1;
+    }
+
+    if (opponent.getIsMonsterMagical() == true && user.getIfMagical() == false)
+    {
+        userDamage+=userDamage*0.1;
+    }
+
+    this->damageToUser = userDamage;
+    this->damageToOpponent = opponentDamage;
+
+    //Checks to see in this is a boss that the user is fighting
+    if (opponent.getIsBoss()) {
+        if (rand()%100 < opponent.getCritModifier())
+        {
+            this->damageToOpponent = damageToOpponent + 0.2*damageToOpponent;
+            cout << '\n' << '\n' << "The opponent has landed a critical hit!" << '\n' << '\n';
+        }
+
+    }
+
+    setNewHealthValuesFromCombat(userDamage, opponentDamage, opponent);
 }
 
-int User_Character::getDefense() {
-    return currentDefense;
+//
+//Returns damage that was dealt to the user
+double combatRunner::returnDamageToUser(){
+    return this->damageToUser;
 }
 
-bool User_Character::getIfMagical() {
-    return isMagical;
+//
+//Returns damage that was dealt to the opponent
+double combatRunner::returnDamageToOpponent(){
+    return this->damageToOpponent;
 }
 
-string User_Character::getName() {
-    return name;
+void combatRunner::setNewHealthValuesFromCombat(double &userDamage, double &opponentDamage, Monsters &opponent) {
+    opponent.setMonsterHealthAfterCombat(opponentDamage);
+    user.setHealthAfterCombat(userDamage);
 }
 
-double User_Character::getHealth() {
-    return currentHealth;
+double combatRunner::findUserCurrentHealth() {
+    return user.getHealth();
 }
 
-double User_Character::getMaxHealth() {
-    return maxHealth;
+double combatRunner::findUserMaxHealth() {
+    return user.getMaxHealth();
 }
 
-void User_Character::resetStats() {
-    currentAttack = naturalAttack;
-    currentDefense = naturalDefense;
-
+void combatRunner::buildInventory(){
+    user.buildInventory();
 }
 
-void User_Character::setHealthAfterCombat(double &x) {
-    currentHealth-=x;
+int combatRunner::getPots(){
+    user.getPots();
 }
-
-//Heals character for half of its health
-void User_Character::healCharacter() {
-    currentHealth = currentHealth + (maxHealth/2);
-    if (currentHealth >= maxHealth)
-        currentHealth = maxHealth;
+void combatRunner::addPots(int pots){
+    user.addPots(pots);
 }
-
-void User_Character::buildInventory(){
-    inv=&inv->getInstance();
+void combatRunner::usePots(){
+    user.usePots();
 }
-int User_Character::getPots(){
-    int pots = inv->getPotions();
-    return pots;
+int combatRunner::getGoblinEar(){
+    user.getGoblinEar();
 }
-void User_Character::addPots(int pots){
-
-    inv->addPotions(pots);
+void combatRunner::lootGoblinEar(){
+    user.lootGoblinEar();
 }
-void User_Character::usePots(){
-    inv->usePotion();
+void combatRunner::lootBand(){
+    user.lootBand();
 }
-int User_Character::getGoblinEar(){
-    inv->getGoblinEar();
-}
-void User_Character::lootGoblinEar(){
-    inv->lootGoblinEar();
-}
-void User_Character::lootBand(){
-    inv->lootBand();
-}
-int User_Character::getBand(){
-    inv->getBand();
-}
-void User_Character::setMagical(bool magical) {
-    isMagical = magical;
-}
-void User_Character::getWand()
-{
-    inv->getWand(*this);
-}
-
-void User_Character::getRapierSword()
-{
-    inv->getRapierSword(*this);
-}
-
-void User_Character::getBowAndArrow()
-{
-    inv->getBowAndArrow(*this);
+int combatRunner::getBand(){
+    user.getBand();
 }
