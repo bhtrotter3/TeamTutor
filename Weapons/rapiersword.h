@@ -13,4 +13,3 @@ public:
 
 
 #endif //TEAMTUTOR_RAPIERSWORD_H
-
