@@ -24,6 +24,10 @@ protected:
 
     bool isMagical = false;
     bool hasWeaponEquipment = false;
+    
+    rapiersword rapier;
+    bowandarrow bowie;
+    wand wandy;
 
     std::string name = "Bill Trotter";
 
