@@ -34,4 +34,3 @@ public:
 
 
 #endif //UNTITLED_MAPS_H
-
