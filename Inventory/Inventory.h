@@ -1,9 +1,9 @@
-//
-// Created by willi on 4/17/2019.
-//
-
 #ifndef TEAMTUTOR_INVENTORY_H
 #define TEAMTUTOR_INVENTORY_H
+class User_Character;
+#include "../Weapons/bowandarrow.h"
+#include "../Weapons/rapiersword.h"
+#include "../Weapons/wand.h"
 
 
 class Inventory {
@@ -24,7 +24,9 @@ public:
     void lootGoblinEar();
     void lootBand();
     int getBand();
-
+    void getWand(User_Character &user);
+    void getRapierSword(User_Character &user);
+    void getBowAndArrow(User_Character &user);
 };
 
 
