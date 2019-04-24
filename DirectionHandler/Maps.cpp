@@ -1,7 +1,3 @@
-//
-// Created by whtrotter on 4/10/2019.
-//
-
 #include "Maps.h"
 
 using namespace std;
@@ -204,15 +200,17 @@ void Maps::goblinCave() { //map transition
             map[1][1] = ' ';
             cout << "Treasure code ofr bowandarrow goes here, code to equipment goes" << endl;
 
-            BowAndArrow Bowie;
+            //BowAndArrow Bowie;
 
             //Reset user stats
             combatRunner1->resetUserStats();
 
             //Equip a weapon, go through comabt runner to increase stats
             //combatRunner1->addWeapon(Bowie);
+            combatRunner1->getBowAndArrow();
 
             //Tell the user what happen
+            cout << "You got a Bowie" << endl;
             printMap();
             t1 = false;
         }
@@ -221,7 +219,9 @@ void Maps::goblinCave() { //map transition
             map[1][7] = ' ';
             cout << "Treasure goes here" << endl;
 
-            RapierSword swordy;
+            //RapierSword swordy;
+            combatRunner1->getRapierSword();
+            cout << "You got a Swordy" << endl;
 
             printMap();
             t2 = false;
@@ -230,9 +230,12 @@ void Maps::goblinCave() { //map transition
         else if (playerx == 5 && playery ==9 && interact&&t3) {//treasure
             map[5][9] = ' ';
 
-            Wand wandy;
+            //Wand wandy;
 
             cout << "Treasure goes here" << endl;
+            combatRunner1->getWand();
+            cout << "You got a Wandy" << endl;
+            
             printMap();
             t3 = false;
         }
