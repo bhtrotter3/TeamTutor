@@ -1,9 +1,3 @@
-//
-// Created by willi on 4/8/2019.
-//
-
-//Thaddeus, consider making the player take damage from the monster when you use the heal option
-
 #include "combatRunner.h"
 #include <iostream>
 #include <string>
@@ -201,4 +195,18 @@ void combatRunner::lootBand(){
 }
 int combatRunner::getBand(){
     user.getBand();
+}
+void combatRunner::getWand()
+{
+    user.getWand();
+}
+
+void combatRunner::getRapierSword()
+{
+    user.getRapierSword();
+}
+
+void combatRunner::getBowAndArrow()
+{
+    user.getBowAndArrow();
 }
