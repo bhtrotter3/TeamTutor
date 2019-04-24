@@ -1,7 +1,3 @@
-//
-// Created by whtrotter on 4/10/2019.
-//
-
 #include "Control.h"
 
 
@@ -100,4 +96,3 @@ void Control::initializeMap() { //build empty map to initialize all index, used 
     map[playerx + 1][playery - 1] = 'O';
     map[playerx + 1][playery + 1] = 'O';
 }
-
