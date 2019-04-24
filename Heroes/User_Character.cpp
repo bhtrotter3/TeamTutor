@@ -1,7 +1,3 @@
-//
-// Created by willi on 4/3/2019.
-//
-
 #include "User_Character.h"
 #include <iostream>
 
@@ -134,4 +130,21 @@ void User_Character::lootBand(){
 }
 int User_Character::getBand(){
     inv->getBand();
+}
+void User_Character::setMagical(bool magical) {
+    isMagical = magical;
+}
+void User_Character::getWand()
+{
+    inv->getWand(*this);
+}
+
+void User_Character::getRapierSword()
+{
+    inv->getRapierSword(*this);
+}
+
+void User_Character::getBowAndArrow()
+{
+    inv->getBowAndArrow(*this);
 }
