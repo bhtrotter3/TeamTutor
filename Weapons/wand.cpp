@@ -12,3 +12,4 @@ void Wand::getWand(User_Character &user)
   user.addDefense(20);
 }
 
+
