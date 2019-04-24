@@ -1,7 +1,3 @@
-//
-// Created by whtrotter on 4/10/2019.
-//
-
 #ifndef UNTITLED_CONTROL_H
 #define UNTITLED_CONTROL_H
 #include <iostream>
