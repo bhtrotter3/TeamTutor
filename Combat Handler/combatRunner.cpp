@@ -149,6 +149,7 @@ void combatRunner::calculateDamage(Monsters &opponent){
 
     }
 
+    //After combat, damage and health need to be set
     setNewHealthValuesFromCombat(userDamage, opponentDamage, opponent);
 }
 
@@ -164,19 +165,23 @@ double combatRunner::returnDamageToOpponent(){
     return this->damageToOpponent;
 }
 
+//Function below ses new health after combat
 void combatRunner::setNewHealthValuesFromCombat(double &userDamage, double &opponentDamage, Monsters &opponent) {
     opponent.setMonsterHealthAfterCombat(opponentDamage);
     user.setHealthAfterCombat(userDamage);
 }
 
+//Function below will return the user's current health
 double combatRunner::findUserCurrentHealth() {
     return user.getHealth();
 }
 
+//Function below will return the user's max health
 double combatRunner::findUserMaxHealth() {
     return user.getMaxHealth();
 }
 
+//Build Inventory
 void combatRunner::buildInventory(){
     user.buildInventory();
 }

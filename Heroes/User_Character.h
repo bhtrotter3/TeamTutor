@@ -22,10 +22,10 @@ protected:
     int critModifer = 0;
 
     bool isMagical = false;
-    bool hasWeaponEquipment = false;
 
     std::string name = "Bill Trotter";
 
+    //All players have an instance of inventory
     Inventory* inv;
 
 public:

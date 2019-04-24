@@ -6,6 +6,7 @@
 
 using namespace std;
 
+//Stats of a bow and arrow
 void BowAndArrow::getBowAndArrow(User_Character &user)
 {
   user.setMagical (false);

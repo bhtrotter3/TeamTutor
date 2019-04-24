@@ -13,6 +13,8 @@ protected:
 public:
 
     Inventory& getInstance();
+
+    //Functions of inventory and how to use items
     int getPotions();
     void usePotion();
     void addPotions(int pots);

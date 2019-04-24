@@ -48,12 +48,16 @@ void Maps::worldMap() {
             playery = 9;
             Maps::townA(); //map switch
         }
+
+        //
         if (playerx == 7 && playery == 3 && interact) {
             interact = false;
             playerx = 19; //town starting location from world map
             playery = 1;
             Maps::goblinCave(); //map switch
         }
+
+        //ORC QUEST
         if (playerx == 9 && playery == 9 && interact) {
             interact = false;
             if (combatRunner1->getBand() == 0) {

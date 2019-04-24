@@ -3,6 +3,7 @@
 
 using namespace std;
 
+//Stats of a Raiper Sword
 void RapierSword::getRapierSword(User_Character &user)
 {
   user.setMagical (false);

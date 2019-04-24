@@ -31,6 +31,7 @@ void Control::buildMap() { //builds non-interactive map tiles, used for movement
     }
 }
 
+//FOR FUTURE DEVELOPMENT
 /*void Control::clearMap (){ //clears interactive tiles (for map change)
     for (int y=0; y<11;y++){
         for (int x = 1; x < 21; x++){
@@ -41,6 +42,11 @@ void Control::buildMap() { //builds non-interactive map tiles, used for movement
 
 }
 */
+
+
+//THIS IS WHERE THE REQUIREMENT FOR EXCEPTION HANDLING IS AT!!
+//
+
 void Control::moveTile(){ //updates player position by user input
     interact = false; //reset interact on movement
 
