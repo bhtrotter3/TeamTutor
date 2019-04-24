@@ -1,4 +1,4 @@
-#include "bowandarrow.h"
+#include "bowandnarrow.h"
 #include <iostream>
 
 #include "../Heroes/User_Character.h"
@@ -13,3 +13,4 @@ void BowAndArrow::getBowAndArrow(User_Character &user)
   user.addDefense(2);
 
 }
+
