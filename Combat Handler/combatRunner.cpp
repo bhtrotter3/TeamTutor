@@ -98,8 +98,14 @@ void combatRunner::combat(Monsters &opponent) {
 
 //
 //This function will reset users stats after dequiping a weapon
-void combatRunner::resetUserStats() {
-    user.resetStats();
+void combatRunner::resetUserStats1() {
+    user.resetUserStats1();
+}
+void combatRunner::resetUserStats2() {
+    user.resetUserStats2();
+}
+void combatRunner::resetUserStats3() {
+    user.resetUserStats3();
 }
 
 
@@ -195,18 +201,4 @@ void combatRunner::lootBand(){
 }
 int combatRunner::getBand(){
     user.getBand();
-}
-void combatRunner::getWand()
-{
-    user.getWand();
-}
-
-void combatRunner::getRapierSword()
-{
-    user.getRapierSword();
-}
-
-void combatRunner::getBowAndArrow()
-{
-    user.getBowAndArrow();
 }
