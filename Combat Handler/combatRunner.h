@@ -1,7 +1,3 @@
-//
-// Created by willi on 4/8/2019.
-//
-
 #ifndef TEAMTUTOR_COMBATRUNNER_H
 #define TEAMTUTOR_COMBATRUNNER_H
 
@@ -12,7 +8,9 @@
 #include "../Villians/The_EX_Wife.h"
 #include "../Heroes/User_Character.h"
 //#include "../Inventory/Inventory.h"
-
+#include "../Weapons/bowandarrow.h"
+#include "../Weapons/rapiersword.h"
+#include "../Weapons/wand.h"
 
 using namespace std;
 
@@ -59,6 +57,9 @@ public:
     void lootGoblinEar();
     void lootBand();
     int getBand();
+    void getWand();
+    void getRapierSword();
+    void getBowAndArrow();
 };
 
 
