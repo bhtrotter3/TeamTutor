@@ -198,30 +198,37 @@ void Maps::goblinCave() { //map transition
 
         else if (playerx == 1 && playery ==1 && interact&&t1) {//treasure
             map[1][1] = ' ';
-            cout << "Treasure code ofr bowandarrow goes here, code to equipment goes" << endl;
+            cout << "You found a treasure chest! You've been equipped with a bow and arrow." << endl;
 
-            //BowAndArrow Bowie;
+            BowAndArrow Bowie;
 
             //Reset user stats
-            combatRunner1->resetUserStats();
+            combatRunner1->resetUserStats1();
+
+            cout << "Your natural attack has been increased by two: 8" << endl;
+            cout << "Your natural defense has been increased by two: 13" << endl;
+            cout << "Your current health has been increased by ten and/or you have been returned to max health. " << endl;
+
 
             //Equip a weapon, go through comabt runner to increase stats
-            //combatRunner1->addWeapon(Bowie);
-            combatRunner1->getBowAndArrow();
+            //combatRunner1->addWeapon(Bowie)
 
             //Tell the user what happen
-            cout << "You got a Bowie" << endl;
             printMap();
             t1 = false;
         }
 
         else if (playerx == 1 && playery ==7 && interact&&t2) {//treasure
             map[1][7] = ' ';
-            cout << "Treasure goes here" << endl;
+            cout << "You found a treasure chest! You've been equipped with a rapier sword." << endl;
 
-            //RapierSword swordy;
-            combatRunner1->getRapierSword();
-            cout << "You got a Swordy" << endl;
+            RapierSword swordy;
+
+            combatRunner1->resetUserStats2();
+
+            cout << "Your natural attack has been increased by ten: 16" << endl;
+            cout << "Your natural defense has been increased by ten: 21" << endl;
+            cout << "Your current health has been increased by fifteen and/or  you have been returned to max health. " << endl;
 
             printMap();
             t2 = false;
@@ -230,12 +237,16 @@ void Maps::goblinCave() { //map transition
         else if (playerx == 5 && playery ==9 && interact&&t3) {//treasure
             map[5][9] = ' ';
 
-            //Wand wandy;
+            Wand wandy;
 
-            cout << "Treasure goes here" << endl;
-            combatRunner1->getWand();
-            cout << "You got a Wandy" << endl;
-            
+            cout << "You found a treasure chest! You've been equipped with a wand." << endl;
+
+            combatRunner1->resetUserStats3();
+
+            cout << "Your natural attack has been increased by ten: 26" << endl;
+            cout << "Your natural defense has been increased by ten: 31" << endl;
+            cout << "Your current health has been increased by thirty and/or you have been returned to max health. " << endl;
+
             printMap();
             t3 = false;
         }
