@@ -1,7 +1,3 @@
-//
-// Created by whtrotter on 4/10/2019.
-//
-
 #ifndef UNTITLED_MAPS_H
 #define UNTITLED_MAPS_H
 #include "Control.h"
@@ -38,3 +34,4 @@ public:
 
 
 #endif //UNTITLED_MAPS_H
+
