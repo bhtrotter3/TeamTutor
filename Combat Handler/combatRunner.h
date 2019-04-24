@@ -8,9 +8,7 @@
 #include "../Villians/The_EX_Wife.h"
 #include "../Heroes/User_Character.h"
 //#include "../Inventory/Inventory.h"
-#include "../Weapons/bowandarrow.h"
-#include "../Weapons/rapiersword.h"
-#include "../Weapons/wand.h"
+
 
 using namespace std;
 
@@ -45,7 +43,9 @@ public:
     double returnDamageToOpponent();
     double findUserCurrentHealth();
     double findUserMaxHealth();
-    void resetUserStats();
+    void resetUserStats1();
+    void resetUserStats2();
+    void resetUserStats3();
 
     void buildInventory();
 
@@ -57,9 +57,6 @@ public:
     void lootGoblinEar();
     void lootBand();
     int getBand();
-    void getWand();
-    void getRapierSword();
-    void getBowAndArrow();
 };
 
 
