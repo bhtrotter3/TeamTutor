@@ -1,3 +1,4 @@
+
 #include "bowandnarrow.h"
 #include <iostream>
 
@@ -13,4 +14,3 @@ void BowAndArrow::getBowAndArrow(User_Character &user)
   user.addDefense(2);
 
 }
-
