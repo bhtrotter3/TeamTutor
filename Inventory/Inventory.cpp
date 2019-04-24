@@ -38,8 +38,3 @@ int Inventory::getBand(){
 }
 
 
-
-}
-
-
-
