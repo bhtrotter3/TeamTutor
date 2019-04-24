@@ -1,11 +1,8 @@
-//
-// Created by willi on 4/3/2019.
-//
-
 #ifndef TEAMTUTOR_USER_CHARACTER_H
 #define TEAMTUTOR_USER_CHARACTER_H
 
 #include "string"
+class Inventory;
 #include "../Inventory/Inventory.h"
 
 class User_Character {
@@ -66,7 +63,10 @@ public:
     void lootGoblinEar();
     void lootBand();
     int getBand();
-
+    void setMagical(bool magical);
+    void getWand();
+    void getRapierSword();
+    void getBowAndArrow();
 };
 
 
