@@ -37,6 +37,9 @@ public:
     void lootGoblinEar();
     void lootBand();
     int getBand();
+    void getWand(User_Character &user);
+    void getRapierSword(User_Character &user);
+    void getBowAndArrow(User_Character &user);
 };
 
 
